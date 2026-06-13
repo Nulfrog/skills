@@ -55,6 +55,8 @@ For each approved slice, publish a new issue to the issue tracker. Use the issue
 
 Publish issues in dependency order (blockers first) so you can reference real issue identifiers in the "Blocked by" field.
 
+If the source PRD or grill produced visualizations, narrow the relevant portion down to each slice and inline it in that issue's Visualization section. A slice-scoped diagram beats a copy of the whole-feature diagram.
+
 <issue-template>
 ## Parent
 
@@ -65,6 +67,10 @@ A reference to the parent issue on the issue tracker (if the source was an exist
 A concise description of this vertical slice. Describe the end-to-end behavior, not layer-by-layer implementation.
 
 Avoid specific file paths or code snippets — they go stale fast. Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it here and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.
+
+## Visualization
+
+(Optional.) A diagram scoped to THIS slice's end-to-end behavior, when a picture communicates the flow better than prose. Reuse the relevant portion of any PRD or grill visualization, narrowed to this slice — not the whole-feature diagram. Use a Mermaid fenced code block (the issue tracker renders them). Same staleness rule as code snippets: encode behavior, not implementation detail. Omit this section entirely if a diagram adds nothing.
 
 ## Acceptance criteria
 
