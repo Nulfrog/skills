@@ -8,3 +8,5 @@ Interview me relentlessly about every aspect of this plan until we reach a share
 Ask the questions one at a time.
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
+
+When the grill resolves into implementable work, default to the project's PRD-first pipeline — run `/to-prd` rather than creating issues ad hoc, mid-grill or at the end. Skip only for pure-discussion grills or if I opt out.

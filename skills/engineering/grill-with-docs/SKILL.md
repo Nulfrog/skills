@@ -85,4 +85,14 @@ Only offer to create an ADR when all three are true:
 
 If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md).
 
+## Closing the session — default to PRD-first
+
+Inline `CONTEXT.md` / ADR updates happen DURING the grill (above) — that is unchanged.
+
+When the grill resolves into implementable work, do NOT create issues ad hoc (neither mid-grill nor at the end). Default to the project's PRD-first pipeline:
+
+1. `/to-prd` — synthesize the session into a PRD issue (the PRD references any ADRs/glossary terms the grill produced).
+
+Skip the pipeline only when the grill produced no implementable work (a pure glossary/ADR clarification) or the user explicitly opts out. If unsure whether there is implementable scope, ask before creating anything.
+
 </supporting-info>

@@ -15,7 +15,9 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label
+
+Carry over any visualizations that emerged during the grill into the PRD's Visualizations section — they captured the shape of the change while it was being decided, so don't let them evaporate.
 
 <prd-template>
 
@@ -26,6 +28,19 @@ The problem that the user is facing, from the user's perspective.
 ## Solution
 
 The solution to the problem, from the user's perspective.
+
+## Visualizations
+
+Diagrams that capture the shape of the change. Carry over any visualizations that emerged during the grill, and add new ones where a relationship is clearer drawn than described.
+
+Use Mermaid fenced code blocks — the issue tracker renders them. Reach for a diagram when the relationship is graph-shaped:
+
+- **Flow / sequence** — how data or control moves end-to-end
+- **State machine** — lifecycle of an entity with non-trivial transitions
+- **Before / after** — when the change reshapes existing structure
+- **Entity relationships** — when schema or domain relationships change
+
+Diagrams must encode decisions and behavior, not transient implementation detail — same staleness rule as code snippets below. Skip any diagram that would only restate the prose.
 
 ## User Stories
 
