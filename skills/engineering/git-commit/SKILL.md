@@ -31,24 +31,20 @@ description: Stage and commit uncommitted changes to git safely and cross-platfo
 7. **Ask to push**: end your reply by asking whether the user wants to push.
    Only `git push` if they say yes.
 
-## OS-safe commit (CRITICAL)
-
-Check OS first: `win32` = PowerShell 7 (`pwsh`), else POSIX. On Windows this repo
-requires PS7 — if only 5.1 is present, complain and tell the user to run
-`pnpm setup` before proceeding.
+## Safe commit (CRITICAL)
 
 Single-line message works anywhere: `git commit -m "subject"`.
 
-**Multi-line message:** PowerShell has no bash heredoc (it uses here-strings,
-`@"..."@`), so `git commit -m "$(cat <<'EOF' ...)"` fails on Windows. Instead,
-write the message to a temp file with the `Write` tool, then commit with `-F`
-(`&&` works on PS7 and POSIX; `;` also fine):
+**Multi-line message:** inline heredocs/here-strings are shell-specific and
+fragile across platforms, so `git commit -m "$(cat <<'EOF' ...)"` is not
+portable. Instead, write the message to a temp file with the `Write` tool, then
+commit with `-F`:
 
 ```
 git add <paths> && git commit -F .git/COMMIT_EDITMSG_TMP && git status
 ```
 
-Delete the temp file afterward (`Delete` tool / `Remove-Item` / `rm`).
+Delete the temp file afterward (`Delete` tool / `rm`).
 
 ## Git safety
 
