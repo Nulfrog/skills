@@ -1,6 +1,6 @@
 ---
 name: setup-matt-pocock-skills
-description: Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
+description: Sets up an `## Agent skills` block in `AGENTS.md` (imported by `CLAUDE.md` via `@AGENTS.md`) and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout, plus a concise communication style (`AGENTS.md` section + `.cursor/rules/concise-communication.mdc` + a `.claude/settings.json` UserPromptSubmit hook). Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
 disable-model-invocation: true
 ---
 
@@ -11,6 +11,7 @@ Scaffold the per-repo configuration that the engineering skills assume:
 - **Issue tracker** — where issues live (GitHub by default; local markdown is also supported out of the box)
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
+- **Communication style** — a concise-communication convention, wired into `AGENTS.md` (imported by `CLAUDE.md`), a Cursor rule, and a `UserPromptSubmit` hook so it's reinforced every turn
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -21,7 +22,7 @@ This is a prompt-driven skill, not a deterministic script. Explore, present what
 Look at the current repo to understand its starting state. Read whatever exists; don't assume:
 
 - `git remote -v` and `.git/config` — is this a GitHub repo? Which one?
-- `AGENTS.md` and `CLAUDE.md` at the repo root — does either exist? Is there already an `## Agent skills` section in either?
+- `AGENTS.md` and `CLAUDE.md` at the repo root — does either exist? Is there already an `## Agent skills` section in either? Does `CLAUDE.md` import `AGENTS.md` (`@AGENTS.md`), or does it hold content directly?
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/` — does this skill's prior output already exist?
@@ -71,24 +72,66 @@ Confirm the layout:
 
 Show the user a draft of:
 
-- The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
+- The `## Communication style` block to add to `AGENTS.md` (the canonical file — see step 4)
+- The `## Agent skills` block to add to `AGENTS.md`
+- The `CLAUDE.md` pointer that imports `AGENTS.md` (`@AGENTS.md`)
+- The `.cursor/rules/concise-communication.mdc` rule file
+- The `UserPromptSubmit` hook to add to `.claude/settings.json`
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, `docs/agents/domain.md`
 
 Let them edit before writing.
 
 ### 4. Write
 
-**Pick the file to edit:**
+**Put the content in `AGENTS.md`, and point `CLAUDE.md` at it.** `AGENTS.md` is the canonical file — both the `## Communication style` and `## Agent skills` sections go there. `CLAUDE.md` stays a thin pointer that imports it, so Claude Code reads the same source as every other agent.
 
-- If `CLAUDE.md` exists, edit it.
-- Else if `AGENTS.md` exists, edit it.
-- If neither exists, ask the user which one to create — don't pick for them.
+- **`AGENTS.md`** — create it if it doesn't exist; otherwise edit it in place. This is where the content sections below are written.
+- **`CLAUDE.md`** — ensure it exists and references `AGENTS.md` via Claude's `@` import:
 
-Never create `AGENTS.md` when `CLAUDE.md` already exists (or vice versa) — always edit the one that's already there.
+  ```markdown
+  # CLAUDE.md
 
-If an `## Agent skills` block already exists in the chosen file, update its contents in-place rather than appending a duplicate. Don't overwrite user edits to the surrounding sections.
+  @AGENTS.md
+  ```
 
-The block:
+  If `CLAUDE.md` doesn't exist, create it with exactly this. If it exists but doesn't import `AGENTS.md`, add the `@AGENTS.md` line (keep any existing content). If it already imports `AGENTS.md`, leave it. If `CLAUDE.md` currently holds content directly (e.g. from a prior run of this skill), move that content into `AGENTS.md` and replace `CLAUDE.md` with the pointer above.
+
+If an `## Agent skills` block already exists in `AGENTS.md`, update its contents in-place rather than appending a duplicate. Don't overwrite user edits to the surrounding sections.
+
+**Communication style.** Wire up the concise-communication convention in three places. If any piece already exists, leave the user's wording as-is rather than overwriting it.
+
+1. **`AGENTS.md` section.** Ensure `AGENTS.md` contains a `## Communication style` section. If it's missing, add it (near the top is fine).
+
+```markdown
+## Communication style
+
+Be extremely concise. Sacrifice grammar for the sake of concision.
+```
+
+2. **Cursor rule.** Write `.cursor/rules/concise-communication.mdc`, copying the [concise-communication.mdc](./concise-communication.mdc) seed template. The `alwaysApply: true` frontmatter makes Cursor load it into every conversation.
+
+3. **Claude `UserPromptSubmit` hook.** Merge the hook below into `.claude/settings.json` so the rule body is re-injected on every prompt submit. If the file doesn't exist, create it with this content. If it exists, merge into the existing `hooks` object (don't clobber other hooks or settings); if a `UserPromptSubmit` array already references this rule, leave it.
+
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const s=require('fs').readFileSync('.cursor/rules/concise-communication.mdc','utf8');console.log(s.replace(/^---[\\s\\S]*?---\\r?\\n/,''))\""
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+The command reads the `.mdc` rule, strips its frontmatter, and prints the body — so the rule and the hook stay in sync from a single source. It uses `node`, so it works cross-platform.
+
+**Agent skills block:**
 
 ```markdown
 ## Agent skills
@@ -113,6 +156,7 @@ Then write the three docs files using the seed templates in this skill folder as
 - [issue-tracker-local.md](./issue-tracker-local.md) — local-markdown issue tracker
 - [triage-labels.md](./triage-labels.md) — label mapping
 - [domain.md](./domain.md) — domain doc consumer rules + layout
+- [concise-communication.mdc](./concise-communication.mdc) — Cursor rule for the communication style (copied to `.cursor/rules/`)
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 
