@@ -28,6 +28,11 @@ _Avoid_: Client, buyer, account
 - **Keep definitions tight.** One or two sentences max. Define what it IS, not what it does.
 - **Only include terms specific to this project's context.** General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
 - **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
+- **Name for first glance.** Prefer a name a newcomer decodes without the definition; favour a self-descriptive phrase over opaque jargon (`Payment Retry` over `Dunning`).
+- **Encode families in the name.** When terms cluster, give them a shared prefix/suffix so the group shows in the name, not only under a subheading (`Order Placed` / `Order Shipped` / `Order Cancelled`). Prefix only the ambiguous — leave already-clear terms bare.
+- **Umbrella + instances.** When one term spans two kinds, name the umbrella and each instance (`Address` → `Billing Address` / `Shipping Address`).
+- **Don't reuse a forbidden word.** If a term's `_Avoid_` bans a word, keep it out of other terms' names.
+- **Drop dead terms.** A glossary entry nothing uses is drift; remove it.
 
 ## Single vs multi-context repos
 

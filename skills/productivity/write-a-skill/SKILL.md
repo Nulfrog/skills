@@ -105,6 +105,15 @@ Split into separate files when:
 - Content has distinct domains (finance vs sales schemas)
 - Advanced features are rarely needed
 
+## Keep it portable
+
+Skills are often shared across repos. Decide the skill's reach before writing:
+
+- **Shared** — keep examples domain-neutral (generic `Order`/`Customer`, not this repo's terms), describe seams and files by *type* rather than exact path, and mark any concrete name as illustrative. Push repo-specifics behind args/config.
+- **Repo-scoped** — repo paths, filenames, and domain terms are fine; say so in the description so the skill isn't mis-triggered elsewhere.
+
+A shared skill that hard-codes one repo's vocabulary or paths breaks silently in every other repo.
+
 ## Review Checklist
 
 After drafting, verify:
@@ -115,3 +124,4 @@ After drafting, verify:
 - [ ] Consistent terminology
 - [ ] Concrete examples included
 - [ ] References one level deep
+- [ ] Examples domain-neutral if the skill is shared (no single-repo vocabulary or paths)
