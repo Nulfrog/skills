@@ -1,6 +1,7 @@
 ---
 name: to-prd
-description: Turn the current conversation context into a PRD and publish it to the project issue tracker. Use when user wants to create a PRD from the current context.
+description: Turn the current conversation into a PRD and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.
+disable-model-invocation: true
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a PRD. Do NOT interview the user — just synthesize what you already know.
@@ -11,11 +12,18 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect any ADRs in the area you're touching.
 
-2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can.
+2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
 
 Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label
+3. **Commit the domain docs first.** Before publishing, commit any uncommitted `CONTEXT.md` and ADR changes from the grill as their own commit (e.g. `docs: <term> glossary + ADR`). These are shared truth: the agent that picks up this PRD works in a worktree branched from the base commit, so uncommitted doc edits are invisible to it and get re-derived into a divergent copy. The PRD references these terms/ADRs — they must exist in history first. Commit to the current working branch; do not push.
+
+4. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label to mark it as a specification, not directly implementable work — don't apply a triage role automatically. This skill stops at the published PRD.
+
+Turning the PRD into agent-ready work is a separate step you trigger — `to-prd` never does it on its own:
+
+- **Slice it (usual path):** you run `/to-issues` to break the PRD into `ready-for-agent` issues.
+- **Implement it whole:** add the `ready-for-agent` label to the PRD issue yourself, and an AFK agent can pick it up as-is.
 
 Carry over any visualizations that emerged during the grill into the PRD's Visualizations section — they captured the shape of the change while it was being decided, so don't let them evaporate.
 
