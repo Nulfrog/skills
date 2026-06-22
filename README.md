@@ -165,6 +165,8 @@ Skills I use daily for code work.
 - **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)** — Actively build and sharpen a project's domain model — challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)** — Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
+- **[git-commit](./skills/engineering/git-commit/SKILL.md)** — Stage and commit uncommitted changes safely and cross-platform: `.gitattributes` normalisation, deliberate staging, and a rebase-pull afterward.
+- **[inline-sandcastle](./skills/engineering/inline-sandcastle/SKILL.md)** — Run the sandcastle implement→review pipeline inline as sequential coder→reviewer subagents, with no Docker isolation.
 
 ### Productivity
 
