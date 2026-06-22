@@ -16,7 +16,12 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label to mark the issue as a specification, not directly implementable work — don't apply a triage role here. Run `/to-issues` to break the PRD into `ready-for-agent` slices.
+3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label to mark it as a specification, not directly implementable work — don't apply a triage role automatically. This skill stops at the published PRD.
+
+Turning the PRD into agent-ready work is a separate step you trigger — `to-prd` never does it on its own:
+
+- **Slice it (usual path):** you run `/to-issues` to break the PRD into `ready-for-agent` issues.
+- **Implement it whole:** add the `ready-for-agent` label to the PRD issue yourself, and an AFK agent can pick it up as-is.
 
 Carry over any visualizations that emerged during the grill into the PRD's Visualizations section — they captured the shape of the change while it was being decided, so don't let them evaporate.
 
