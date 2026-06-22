@@ -5,7 +5,7 @@ description: Make an existing project glossary's terms clearer and self-descript
 
 # Simplify Context
 
-Take the **existing** `CONTEXT.md` glossary and make its terms clearer at first glance — without changing behaviour. Distinct from `ubiquitous-language` (builds a glossary from scratch) and `audit-context-drift` (reconciles wording vs ADRs). This skill **proposes** a vetted rename and hands off; it does not edit by default.
+Take the **existing** `CONTEXT.md` glossary and make its terms clearer at first glance — without changing behaviour. Distinct from `ubiquitous-language` (builds a glossary from scratch). This skill **proposes** a vetted rename and hands off; it does not edit by default.
 
 All concrete term names below are illustrative — use the target repo's own domain vocabulary.
 
@@ -17,11 +17,11 @@ All concrete term names below are illustrative — use the target repo's own dom
 4. **Pick scope with the user** — three tiers:
    - *Glosses only* — keep names, add a plain-language one-liner per term. Edits one file. Zero code risk.
    - *Rename everywhere* — new names across CONTEXT.md + code symbols + UI strings + docs. Confirm code-churn reach (symbols+strings vs also filenames).
-   - *CONTEXT.md only* — fast but **introduces drift** `audit-context-drift` exists to fight. Discourage.
+   - *CONTEXT.md only* — fast but **introduces drift** between the glossary and the code/docs. Discourage.
 5. **Build the rename map.** Default lens = **family grouping**: a shared prefix/suffix makes related terms scannable (`Order Placed` / `Order Shipped`; `Billing Address` / `Shipping Address`). Plain-language de-jargon (`Payment Retry` over `Dunning`) is the fallback when no natural family exists. Apply the checks below. Present as an old → new → family table.
 6. **Confirm names.** Contested names → `AskUserQuestion`, recommended option first, 2–4 candidates each. Lock the full map before any handoff.
 7. **Map the seams** (grounds the handoff — see below).
-8. **Hand off.** `/to-prd` (a wide rename is usually PRD-sized), `/to-issues`, or direct edits. Whatever applies the rename, finish with `audit-context-drift` to confirm CONTEXT.md ↔ docs agree.
+8. **Hand off.** `/to-prd` (a wide rename is usually PRD-sized), `/to-issues`, or direct edits. Whatever applies the rename, finish by confirming `CONTEXT.md` and the docs/ADRs still agree.
 
 ## Rename-map checks
 
@@ -37,7 +37,7 @@ A rename is a refactor — use the highest existing seam, add none. Look for:
 - **The glossary's source-of-truth test** — many repos parse `CONTEXT.md` and assert the term list and/or verbatim definitions. Renames update the glossary headers (keep order) plus that test's expectations.
 - **Term-string literals** — anywhere code or UI looks a term up by its exact glossary spelling must move in lockstep, or the lookup falls back / breaks.
 - **Behavior suites** — symbol renames are a pure refactor; behaviour tests should stay green except where they assert an on-screen term string.
-- **Docs prose** (ADRs etc.) — find/replace term mentions. Usually no test guard — `audit-context-drift` is the check.
+- **Docs prose** (ADRs etc.) — find/replace term mentions. Usually no test guard — confirm by hand that the docs still match `CONTEXT.md`.
 
 ## Notes
 
