@@ -5,7 +5,7 @@ description: Make an existing project glossary's terms clearer and self-descript
 
 # Simplify Context
 
-Take the **existing** `CONTEXT.md` glossary and make its terms clearer at first glance — without changing behaviour. Distinct from `ubiquitous-language` (builds a glossary from scratch). This skill **proposes** a vetted rename and hands off; it does not edit by default.
+Take the **existing** `CONTEXT.md` glossary and make its terms clearer at first glance — without changing behaviour. Distinct from `domain-modeling` (builds and sharpens the glossary as you design). This skill **proposes** a vetted rename and hands off; it does not edit by default.
 
 All concrete term names below are illustrative — use the target repo's own domain vocabulary.
 
