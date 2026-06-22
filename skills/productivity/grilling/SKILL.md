@@ -7,6 +7,8 @@ Interview me relentlessly about every aspect of this plan until we reach a share
 
 Ask the questions one at a time, waiting for feedback on each question before continuing. Asking multiple questions at once is bewildering.
 
+For each question, restate it in plain language with a concrete example — real names and numbers. If you use a technical term (e.g. "monotonicity", "ratchet"), the example must show what it means, not just name it.
+
 If a question can be answered by exploring the codebase, explore the codebase instead.
 
 ## Closing the session — default to PRD-first (engineering grills)
