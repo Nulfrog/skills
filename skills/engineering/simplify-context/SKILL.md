@@ -1,6 +1,7 @@
 ---
 name: simplify-context
-description: Make an existing project glossary's terms clearer and self-descriptive — judge how entrenched each term is in code and docs, propose a rename map (favouring family-grouped prefixes/suffixes), confirm names, then hand off to /to-prd, /to-issues, or direct edits. Use when the user wants to clean up CONTEXT.md vocabulary, rename opaque or too-technical domain terms, make glossary sections understandable at first glance, group related terms by prefix/suffix, or says a term "isn't obvious until you read the definition".
+description: Make an existing CONTEXT.md glossary's opaque terms clear at first glance — propose a family-grouped rename map, then hand off.
+disable-model-invocation: true
 ---
 
 # Simplify Context
@@ -12,7 +13,7 @@ All concrete term names below are illustrative — use the target repo's own dom
 ## Workflow
 
 1. **Read the glossary.** `CONTEXT.md` `## Language` section. Note its meta-rules (no schemas / file paths / impl detail) and any reserved words (a word one term forbids another from using, via its `_Avoid_`).
-2. **Flag the opaque terms.** First-glance test: would a newcomer guess the meaning from the name alone? Mark jargon-as-noun and names that don't signal their family. Leave already-clear terms alone — clarity, not churn.
+2. **Flag the opaque terms.** **First-glance test**: would a newcomer guess the meaning from the name alone? Mark jargon-as-noun and names that don't signal their family. Leave already-clear terms alone — clarity, not churn.
 3. **Judge entrenchment** (drives scope). Grep each term across the codebase and the docs (ADRs and similar). Many hits — especially symbol names and filenames — mean renaming is a real refactor, not a doc edit.
 4. **Pick scope with the user** — three tiers:
    - *Glosses only* — keep names, add a plain-language one-liner per term. Edits one file. Zero code risk.
