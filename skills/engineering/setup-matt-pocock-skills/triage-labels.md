@@ -13,3 +13,9 @@ The skills speak in terms of five canonical triage roles. This file maps those r
 When a skill mentions a role (e.g. "apply the AFK-ready triage label"), use the corresponding label string from this table.
 
 Edit the right-hand column to match whatever vocabulary you actually use.
+
+**Artifact labels (not triage roles).** `/to-prd` applies a `prd` label to mark an issue as a specification — it is broken into `ready-for-agent` slices by `/to-issues`, not moved through the triage state machine directly. It's a category tag, not a triage state. Rename it here if your tracker uses a different string:
+
+| Label in mattpocock/skills | Label in our tracker | Meaning                                  |
+| -------------------------- | -------------------- | ---------------------------------------- |
+| `prd`                      | `prd`                | A PRD spec issue, sliced by `/to-issues` |
