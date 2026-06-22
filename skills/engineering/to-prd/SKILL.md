@@ -16,7 +16,9 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label to mark it as a specification, not directly implementable work — don't apply a triage role automatically. This skill stops at the published PRD.
+3. **Commit the domain docs first.** Before publishing, commit any uncommitted `CONTEXT.md` and ADR changes from the grill as their own commit (e.g. `docs: <term> glossary + ADR`). These are shared truth: the agent that picks up this PRD works in a worktree branched from the base commit, so uncommitted doc edits are invisible to it and get re-derived into a divergent copy. The PRD references these terms/ADRs — they must exist in history first. Commit to the current working branch; do not push.
+
+4. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label to mark it as a specification, not directly implementable work — don't apply a triage role automatically. This skill stops at the published PRD.
 
 Turning the PRD into agent-ready work is a separate step you trigger — `to-prd` never does it on its own:
 
