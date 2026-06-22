@@ -51,11 +51,7 @@ When the user uses vague or overloaded terms, propose a precise canonical term. 
 
 ### Name for first glance
 
-When you coin or rename a term, run the first-glance test: could a newcomer guess its meaning from the name alone? If the name only makes sense after the definition, propose a clearer one.
-
-- **Encode the family in the name** when a term joins a cluster — a shared prefix/suffix makes the group scannable in the name itself, not just under a subheading (`Billing Address` / `Shipping Address`).
-- **Self-descriptive over jargon-as-noun** (`Payment Retry` beats `Dunning`). If a technical label is unavoidable, qualify it so its family shows.
-- **Respect reserved words** — never reuse a word another term forbids in its `_Avoid_`.
+When you coin or rename a term, run the first-glance test: could a newcomer guess its meaning from the name alone? If it only makes sense after the definition, propose a clearer one — apply the naming rules in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md) (self-descriptive over jargon, encode the family in the name, respect reserved words).
 
 Cleaning up an existing glossary wholesale (many opaque terms at once) is its own pass — use `/simplify-context`, not term-by-term here.
 

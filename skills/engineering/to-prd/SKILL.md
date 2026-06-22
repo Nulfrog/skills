@@ -16,7 +16,7 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Check with the user that these seams match their expectations.
 
-3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label
+3. Write the PRD using the template below, then publish it to the project issue tracker. Apply the `prd` label to mark the issue as a specification, not directly implementable work — don't apply a triage role here. Run `/to-issues` to break the PRD into `ready-for-agent` slices.
 
 Carry over any visualizations that emerged during the grill into the PRD's Visualizations section — they captured the shape of the change while it was being decided, so don't let them evaporate.
 

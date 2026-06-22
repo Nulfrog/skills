@@ -9,6 +9,6 @@ Ask the questions one at a time, waiting for feedback on each question before co
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
 
-## Closing the session — default to PRD-first
+## Closing the session — default to PRD-first (engineering grills)
 
-When the grill resolves into implementable work, do NOT create issues ad hoc (neither mid-grill nor at the end). Default to the project's PRD-first pipeline — run `/to-prd` to synthesize the session into a PRD. Skip only when the grill produced no implementable work (pure discussion or clarification) or I explicitly opt out. If unsure whether there is implementable scope, ask before creating anything.
+When grilling an engineering change that resolves into implementable code work (the `/grill-with-docs` path), do NOT create issues ad hoc (neither mid-grill nor at the end). Default to the project's PRD-first pipeline — run `/to-prd` to synthesize the session into a PRD. For non-code or pure-discussion grills (the `/grill-me` path), skip this. If unsure whether there is implementable engineering scope, ask before creating anything.
