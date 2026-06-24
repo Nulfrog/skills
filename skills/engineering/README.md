@@ -11,9 +11,11 @@ Reachable only when you type them (`disable-model-invocation: true`).
 - **[triage](./triage/SKILL.md)** — Move issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./improve-codebase-architecture/SKILL.md)** — Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[setup-matt-pocock-skills](./setup-matt-pocock-skills/SKILL.md)** — Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo.
+- **[setup-nulfrog-skills](./setup-nulfrog-skills/SKILL.md)** — Apply Nulfrog's local setup conventions on top of `setup-matt-pocock-skills`: AGENTS.md as canonical, concise-communication wiring, and a `prd` artifact label. Run once, after the base setup.
 - **[to-issues](./to-issues/SKILL.md)** — Break any plan, spec, or PRD into independently-grabbable issues using vertical slices.
 - **[to-prd](./to-prd/SKILL.md)** — Turn the current conversation into a PRD and publish it to the issue tracker.
 - **[prototype](./prototype/SKILL.md)** — Build a throwaway prototype — a runnable terminal app for state/logic questions, or several toggleable UI variations.
+- **[simplify-context](./simplify-context/SKILL.md)** — Make an existing `CONTEXT.md` glossary's opaque terms clear at first glance — propose a family-grouped rename map, then hand off.
 
 ## Model-invoked
 
@@ -23,3 +25,5 @@ Model- or user-reachable (rich trigger phrasing so the model can reach for them)
 - **[tdd](./tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 - **[domain-modeling](./domain-modeling/SKILL.md)** — Actively build and sharpen a project's domain model — challenge terms, stress-test with scenarios, update `CONTEXT.md` and ADRs inline.
 - **[codebase-design](./codebase-design/SKILL.md)** — Shared discipline and vocabulary for designing deep modules: small interfaces, clean seams, testable through the interface.
+- **[git-commit](./git-commit/SKILL.md)** — Stage and commit uncommitted changes safely and cross-platform: `.gitattributes` normalisation, deliberate staging, and a rebase-pull afterward.
+- **[git-renormalize](./git-renormalize/SKILL.md)** — Clear phantom CRLF/LF changes from `git status` by renormalizing line endings, without touching real edits.

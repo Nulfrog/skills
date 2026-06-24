@@ -13,10 +13,16 @@
     "./skills/engineering/prototype",
     "./skills/engineering/domain-modeling",
     "./skills/engineering/codebase-design",
+    "./skills/engineering/git-commit",
+    "./skills/engineering/git-renormalize",
+    "./skills/engineering/simplify-context",
+    "./skills/engineering/setup-nulfrog-skills",
     "./skills/productivity/grill-me",
     "./skills/productivity/grilling",
     "./skills/productivity/handoff",
     "./skills/productivity/teach",
-    "./skills/productivity/writing-great-skills"
+    "./skills/productivity/writing-great-skills",
+    "./skills/productivity/prepare-for-grill",
+    "./skills/productivity/improving-great-skills"
   ]
 }
