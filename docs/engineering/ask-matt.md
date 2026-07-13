@@ -28,7 +28,7 @@ The idea `ask-matt` gives you to think with is the **flow** — a path *through*
 
 ## Nulfrog additions
 
-Before a grill, [prepare-for-grill](https://aihero.dev/skills-prepare-for-grill) checks that its prompt and any sources are consistent and small enough to converge. It splits independent design trees into separate grills and routes a huge, foggy effort to [wayfinder](https://aihero.dev/skills-wayfinder), rather than mistaking it for a settled multi-session build. For skill maintenance, [improving-great-skills](https://aihero.dev/skills-improving-great-skills) safely grafts additive changes onto a host skill or routes them to a fork or new skill.
+Before a grill, [prepare-for-grill](https://aihero.dev/skills-prepare-for-grill) checks that its prompt and any sources are consistent and small enough to converge. It splits independent design trees into separate grills and routes a huge, foggy effort to [wayfinder](https://aihero.dev/skills-wayfinder), rather than mistaking it for a settled multi-session build.
 
 For repository setup, run [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills), then [setup-nulfrog-skills](https://aihero.dev/skills-setup-nulfrog-skills) to make `AGENTS.md` canonical, wire concise communication, and configure `spec` provenance. For Git maintenance, [resolving-merge-conflicts](https://aihero.dev/skills-resolving-merge-conflicts) finishes a conflicted merge or rebase from primary-source intent; [git-renormalize](https://aihero.dev/skills-git-renormalize) clears line-ending phantoms; and [git-commit](https://aihero.dev/skills-git-commit) stages and commits deliberately, then checks remote drift before offering to push.
 
