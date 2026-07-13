@@ -35,7 +35,7 @@ On **rejection**, stop and report the recommendation with its reason. Don't fork
 Locate the **graft site** — where the graft attaches in the host's **information hierarchy**, which rung and beside which neighbours — and attach there in the host's own voice, hierarchy, and leading words: inline what every branch needs, disclose what only some reach. Where you apply depends on ownership:
 
 - **You own the host** (your edits persist) → edit the host `SKILL.md` in place. If the host is mirrored across skill trees, apply to each copy.
-- **The host is vendored** (re-synced from upstream, so in-place edits get overwritten) → emit a patch artifact instead: the target path, a precise **anchor**, and the addition wrapped in `<!-- ADDITION -->` fences. Follow the existing convention in [`nulfrog-skill-patches/`](../../../nulfrog-skill-patches/).
+- **The host is vendored** (re-synced from upstream, so in-place edits get overwritten) → emit a patch artifact instead: create `nulfrog-skill-patches/` if needed, then write a `<skill-name>.md` file containing the target path, a precise **anchor**, and the addition wrapped in `<!-- ADDITION -->` fences.
 
 ## Prune the graft
 

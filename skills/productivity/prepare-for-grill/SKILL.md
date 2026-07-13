@@ -24,7 +24,7 @@ disable-model-invocation: true
 
 **Scope — will this converge in one session?**
 - One design tree, not several tangled together.
-- Small enough to reach shared understanding before the **smart zone** runs out (~120k tokens; see `/ask-matt`). A grill that can't converge ends in failure — flag it to split, or route a multi-session build to `/to-prd` → `/to-issues`.
+- Small enough to reach shared understanding before the **smart zone** runs out (~120k tokens; see `/ask-matt`). A grill that can't converge ends in failure — flag it to split, or route a multi-session build to `/to-spec` → `/to-tickets`.
 
 **Sources — open each one; does it hold up against the prompt?**
 - **Reachable** — you can actually read it. Dead link, blocked page, or missing file.

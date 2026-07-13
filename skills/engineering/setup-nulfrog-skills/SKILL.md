@@ -1,6 +1,6 @@
 ---
 name: setup-nulfrog-skills
-description: Apply this repo's local-specific (nulfrog) setup conventions on top of setup-matt-pocock-skills — AGENTS.md as the canonical agent doc with CLAUDE.md as a thin pointer, a concise-communication style wired into AGENTS.md + a Cursor rule + a Claude UserPromptSubmit hook, and a `prd` artifact label for PRD specs. Run once, after setup-matt-pocock-skills.
+description: Apply this repo's Nulfrog-specific setup conventions on top of setup-matt-pocock-skills — AGENTS.md as the canonical agent doc with CLAUDE.md as a thin pointer, concise-communication wiring, and a `spec` provenance label for issues created by /to-spec. Run once, after setup-matt-pocock-skills.
 disable-model-invocation: true
 ---
 
@@ -72,10 +72,20 @@ Be extremely concise. Sacrifice grammar for the sake of concision.
 
 The command reads the `.mdc` rule, strips its frontmatter, and prints the body — so the rule and the hook stay in sync from a single source. It uses `node`, so it works cross-platform.
 
-### `prd` artifact label
+### `spec` provenance label
 
-`/to-prd` applies a `prd` label to mark an issue as a specification (sliced into `ready-for-agent` issues by `/to-issues`, not moved through the triage state machine directly). It's a category tag, not a triage state. Record it in `docs/agents/triage-labels.md` alongside the canonical triage roles — rename the string if your tracker uses a different one:
+`/to-spec` applies both `ready-for-agent` and `spec` to the issue it publishes. `/to-tickets` applies only `ready-for-agent`, so `spec` identifies the source specifications without changing Matt's triage state machine.
 
-| Label in mattpocock/skills | Label in our tracker | Meaning                                  |
-| -------------------------- | -------------------- | ---------------------------------------- |
-| `prd`                      | `prd`                | A PRD spec issue, sliced by `/to-issues` |
+Record `spec` in a separate **Category labels** section in `docs/agents/triage-labels.md`. If that file does not exist because `/triage` was not installed during base setup, create it with just this section. Rename the local string if the tracker already uses a different label:
+
+```markdown
+## Category labels
+
+These labels describe what an issue is; they are not triage states and may coexist with any triage role.
+
+| Label in Nulfrog/skills | Label in our tracker | Meaning |
+| --- | --- | --- |
+| `spec` | `spec` | A source specification published by `/to-spec` |
+```
+
+Keep this section separate from the five canonical triage roles. Do not add `spec` to `/to-tickets` output.
