@@ -1,14 +1,14 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=domain-modeling
+npx skills add Nulfrog/skills --skill=domain-modeling
 ```
 
 ```bash
 npx skills update domain-modeling
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling)
+[Source](https://github.com/Nulfrog/skills/tree/main/skills/engineering/domain-modeling)
 
 ## What it does
 
@@ -30,10 +30,12 @@ The skill writes into two places, both created lazily — only once there is som
 
 Two artifacts, two different bars:
 
-- **The glossary** (`CONTEXT.md`) captures language. Every time a vague term is made canonical, it's written down inline — not batched — so the shared vocabulary stays current with the conversation. It stays ruthlessly free of implementation detail.
+- **The glossary** (`CONTEXT.md`) captures language. A proposed term is not resolved until the user explicitly confirms the term and definition; only then is it written down inline rather than batched. It stays ruthlessly free of implementation detail.
 - **An ADR** captures a decision, and the bar is high: offered only when the choice is **hard to reverse**, **surprising without context**, and **the result of a real trade-off**. Miss any one of the three and there is no ADR. This is what keeps `docs/adr/` a record of consequential forks rather than a diary.
 
 The move that makes it click: when you state how something works, the skill cross-references the code and surfaces the contradiction — "your code cancels entire Orders, but you just said partial cancellation is possible — which is right?" The language and the code are forced to agree.
+
+When a decision changes, history is kept only if it explains reality: an ADR that was acted on is superseded by a new ADR, leaving a breadcrumb to the old implementation. If it was never acted on, the existing ADR is overwritten instead; recording unused history would add noise.
 
 ## Pulled out on purpose
 

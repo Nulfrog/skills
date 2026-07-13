@@ -22,6 +22,13 @@ Only include these when they add genuine value. Most ADRs won't need them.
 - **Considered Options** — only when the rejected alternatives are worth remembering
 - **Consequences** — only when non-obvious downstream effects need to be called out
 
+## Superseding vs. overwriting
+
+`superseded by ADR-NNNN` leaves a breadcrumb back to the old decision — worth keeping only when that decision was acted on. So before superseding, look for code or usage implementing the original ADR:
+
+- **Acted on** → supersede, so the breadcrumb explains why the implementation looks the way it does.
+- **Never acted on** → overwrite instead: edit the ADR in place to the new decision. A breadcrumb to a decision nothing implemented is clutter, not history.
+
 ## Numbering
 
 Scan `docs/adr/` for the highest existing number and increment by one.

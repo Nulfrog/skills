@@ -10,7 +10,7 @@
 
 # Skills For Real Engineers
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
+[![skills.sh](https://skills.sh/b/Nulfrog/skills)](https://skills.sh/Nulfrog/skills)
 
 My agent skills that I use every day to do real engineering - not vibe coding.
 
@@ -27,17 +27,19 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 1. Run the skills.sh installer:
 
 ```bash
-npx skills@latest add mattpocock/skills
+npx skills@latest add Nulfrog/skills
 ```
 
-2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills`**.
+2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills` and `/setup-nulfrog-skills`**.
 
 3. Run `/setup-matt-pocock-skills` in your agent. It will:
-   - Ask you which issue tracker you want to use (GitHub, Linear, or local files)
+   - Ask you which issue tracker you want to use (GitHub, GitLab, local files, or another tracker)
    - Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)
    - Ask you where you want to save any docs we create
 
-4. Bam - you're ready to go.
+4. Run `/setup-nulfrog-skills` to make `AGENTS.md` canonical, wire concise communication, and configure the `spec` provenance label used by `/to-spec`.
+
+5. Bam - you're ready to go.
 
 ## Why These Skills Exist
 
@@ -149,11 +151,12 @@ Skills I use daily for code work.
 
 **User-invoked**
 
-- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)** — Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
+- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)** — Ask which skill or flow fits your situation. A router over the skills in this repo.
 - **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.
 - **[triage](./skills/engineering/triage/SKILL.md)** — Move issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** — Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
+- **[setup-nulfrog-skills](./skills/engineering/setup-nulfrog-skills/SKILL.md)** — Apply Nulfrog's local setup conventions on top of `setup-matt-pocock-skills`: AGENTS.md as the canonical agent doc, concise-communication wiring, and a `spec` provenance label. Run once, after the base setup.
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)** — Turn the current conversation into a spec and publish it to the issue tracker. No interview — just synthesizes what you've already discussed.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)** — Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges — written as text in a local file, or as native blocking links on a real tracker.
 - **[implement](./skills/engineering/implement/SKILL.md)** — Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
@@ -168,6 +171,9 @@ Skills I use daily for code work.
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)** — Actively build and sharpen a project's domain model — challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)** — Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[code-review](./skills/engineering/code-review/SKILL.md)** — Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/PRD?), run as parallel sub-agents so neither pollutes the other.
+- **[resolving-merge-conflicts](./skills/engineering/resolving-merge-conflicts/SKILL.md)** — Resolve an in-progress merge or rebase by tracing each conflict to its primary sources, preserving both intents where possible, and verifying the result.
+- **[git-commit](./skills/engineering/git-commit/SKILL.md)** — Stage and commit uncommitted changes safely and cross-platform: `.gitattributes` normalisation, deliberate staging, and a rebase-pull afterward.
+- **[git-renormalize](./skills/engineering/git-renormalize/SKILL.md)** — Clear phantom CRLF/LF changes from `git status` by renormalizing line endings, without touching real edits.
 
 ### Productivity
 
@@ -179,6 +185,8 @@ General workflow tools, not code-specific.
 - **[handoff](./skills/productivity/handoff/SKILL.md)** — Compact the current conversation into a handoff document so another agent can continue the work.
 - **[teach](./skills/productivity/teach/SKILL.md)** — Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
 - **[writing-great-skills](./skills/productivity/writing-great-skills/SKILL.md)** — Reference for writing and editing skills well: the vocabulary and principles that make a skill predictable.
+- **[prepare-for-grill](./skills/productivity/prepare-for-grill/SKILL.md)** — Analyze a grill prompt and its sources before you run it, and hand back written feedback: blockers, fixes, and a revised, grill-ready prompt.
+- **[improving-great-skills](./skills/productivity/improving-great-skills/SKILL.md)** — Add to an existing skill without degrading it: graft compatible, additive content onto a host, or route an oversized change to a fork or new skill.
 
 **Model-invoked**
 

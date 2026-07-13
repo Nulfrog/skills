@@ -10,6 +10,8 @@ Reachable only when you type them (`disable-model-invocation: true`).
 - **[handoff](./handoff/SKILL.md)** — Compact the current conversation into a handoff document so another agent can continue the work.
 - **[teach](./teach/SKILL.md)** — Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
 - **[writing-great-skills](./writing-great-skills/SKILL.md)** — Reference for writing and editing skills well: the vocabulary and principles that make a skill predictable.
+- **[prepare-for-grill](./prepare-for-grill/SKILL.md)** — Analyze a grill prompt and its sources before you run it, and hand back written feedback: blockers, fixes, and a revised, grill-ready prompt.
+- **[improving-great-skills](./improving-great-skills/SKILL.md)** — Add to an existing skill without degrading it: graft compatible, additive content onto a host, or route an oversized change to a fork or new skill.
 
 ## Model-invoked
 

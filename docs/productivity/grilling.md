@@ -1,20 +1,20 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=grilling
+npx skills add Nulfrog/skills --skill=grilling
 ```
 
 ```bash
 npx skills update grilling
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)
+[Source](https://github.com/Nulfrog/skills/tree/main/skills/productivity/grilling)
 
 ## What it does
 
 `grilling` is the relentless interview that stress-tests a plan or design before you build it. It walks down the design tree branch by branch, resolving the dependencies between decisions one at a time until you and the agent share the same understanding.
 
-It asks **one question at a time** and waits for your answer before the next — never a bulk list, which is bewildering. Each question comes with the agent's own recommended answer, and any question the codebase can settle it explores instead of asking you. It won't start enacting the plan until you confirm the shared understanding has been reached.
+Before the first question, it lays out the design-tree branches and agrees with you which are in scope and which must be cut so the session can converge. It then asks **one question at a time** and waits for your answer before the next — never a bulk list, which is bewildering. Each question comes with the agent's own recommended answer, and any question the codebase can settle it explores instead of asking you. It won't start enacting the plan until you confirm the shared understanding has been reached.
 
 ## When to reach for it
 
@@ -24,7 +24,9 @@ Reach for it when a plan or design still has soft spots and you want them surfac
 
 ## The design tree
 
-The mental model is a **design tree**: every plan branches into decisions, and decisions depend on each other. `grilling` descends that tree one node at a time, so an early answer can reshape which questions come next. That is why the questions arrive singly and in dependency order — a firehose of parallel questions loses the structure that makes the interview converge on a shared understanding.
+The mental model is a **design tree**: every plan branches into decisions, and decisions depend on each other. `grilling` first bounds that tree, then descends it one node at a time, so an early answer can reshape which questions come next. That is why the questions arrive singly and in dependency order — a firehose of parallel questions loses the structure that makes the interview converge on a shared understanding.
+
+When options are hard to compare in the abstract, the question includes a worked **pseudo-breakdown**: tiny pseudocode or the same small example carried through each option. Unfamiliar technical terms get short definitions, so terminology never becomes a hidden test of the user.
 
 ## Pulled out on purpose
 

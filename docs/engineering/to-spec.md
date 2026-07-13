@@ -1,14 +1,14 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=to-spec
+npx skills add Nulfrog/skills --skill=to-spec
 ```
 
 ```bash
 npx skills update to-spec
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/engineering/to-spec)
+[Source](https://github.com/Nulfrog/skills/tree/main/skills/engineering/to-spec)
 
 ## What it does
 
@@ -24,7 +24,9 @@ Reach for it once a change has been talked through and the domain language is se
 
 ## Prerequisites
 
-`to-spec` publishes into your issue tracker, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must have configured the tracker and triage labels for this repo first. It applies the `ready-for-agent` label itself — no separate triage pass needed.
+`to-spec` publishes into your issue tracker, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must configure the tracker and triage labels first, followed by Nulfrog's [setup-nulfrog-skills](https://aihero.dev/skills-setup-nulfrog-skills) overlay.
+
+The overlay configures two labels with different meanings. `ready-for-agent` is the triage **state**, while `spec` is the **provenance** marking an issue created by `/to-spec`; Nulfrog's `/to-spec` applies both. Tickets published by [to-tickets](https://aihero.dev/skills-to-tickets) receive only `ready-for-agent`, because they are agent-ready outputs rather than source specifications.
 
 ## What the spec includes
 

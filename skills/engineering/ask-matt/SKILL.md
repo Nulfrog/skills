@@ -14,7 +14,7 @@ A **flow** is a path through the skills. Most paths run along one **main flow**,
 
 The route most work travels. You have an idea and want it built.
 
-1. **`/grill-with-docs`** — sharpen the idea by interview. Start here when you **have a codebase**: it's stateful, retaining what it learns in `CONTEXT.md` and ADRs. (No codebase? Use `/grill-me` — see Standalone. Both run the same `/grilling` primitive; `grill-with-docs` is the one that leaves a paper trail.)
+1. **`/grill-with-docs`** — sharpen the idea by interview. Start here when you **have a codebase**: it's stateful, retaining what it learns in `CONTEXT.md` and ADRs. (No codebase? Use `/grill-me` — see Standalone. Both run the same `/grilling` primitive; `grill-with-docs` is the one that leaves a paper trail.) Shaky idea — ambiguous, oversized, or leaning on external links/docs? Use **`/prepare-for-grill`** first for feedback (see Standalone).
 2. **Branch — can you settle every question in conversation?** If a question needs a runnable answer (state, business logic, a UI you have to see), detour through a prototype, bridged by **`/handoff`** in both directions (see Crossing sessions):
    - **`/handoff`** out, then open a fresh session against that file,
    - **`/prototype`** to answer the question with throwaway code,
@@ -48,6 +48,9 @@ A starting situation that generates work, then merges onto the main flow.
 Not feature work — upkeep.
 
 - **`/improve-codebase-architecture`** — run whenever you have a spare moment to keep the codebase good for agents to operate in. It surfaces **deepening opportunities**; picking one _generates an idea_ you can take into the main flow at `/grill-with-docs`. It's the survey that finds the candidates; **`/codebase-design`** (below) is the bench you design the chosen one on.
+- **`/resolving-merge-conflicts`** — when a merge or rebase is already conflicted, trace each hunk to its primary-source intent, preserve both sides where possible, then verify and finish the operation.
+- **`/git-renormalize`** — when Git reports files changed but their content diff is empty, clear the CRLF/LF phantoms without discarding real edits.
+- **`/git-commit`** — when a finished change needs deliberate staging, a safe commit, and a clean pull/rebase check before you decide whether to push.
 
 ## Vocabulary underneath
 
@@ -65,12 +68,14 @@ Two model-invoked references that run *beneath* the other skills — each the si
 
 Off the main flow entirely.
 
+- **`/prepare-for-grill`** — before any grill, analyze the prompt and its sources in one pass and get written feedback: blockers, fixes, and a revised prompt. It **doesn't** grill or edit — you apply the feedback, then run `/grill-me` or `/grill-with-docs` in a fresh conversation.
 - **`/grill-me`** — the same relentless interview as `/grill-with-docs`, but for when you have **no codebase**. Stateless: it saves nothing locally, builds no `CONTEXT.md`. Reach for it to sharpen any plan or design that doesn't live in a repo.
 - **`/prototype`** — a small, throwaway program that answers one design question: does this state model feel right, or what should this UI look like. Throwaway from day one — keep the answer, delete the code. It's the detour in step 2 of the main flow, but reach for it any time a design question is hard to settle on paper.
 - **`/research`** — delegate reading legwork to a **background agent**: it investigates a question against **primary sources**, then leaves a cited Markdown file in the repo. Keep working while it reads. The file it produces is something to take *into* the main flow at `/grill-with-docs` — research feeds the thinking, it doesn't replace it.
 - **`/teach`** — learn a concept over multiple sessions, using the current directory as a stateful workspace.
 - **`/writing-great-skills`** — reference for writing and editing skills well.
+- **`/improving-great-skills`** — add to an existing skill without degrading it: graft a compatible addition, or route a change that needs a fork or new skill.
 
 ## Precondition
 
-**`/setup-matt-pocock-skills`** — run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work.
+**`/setup-matt-pocock-skills`** — run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work. In the Nulfrog fork, run **`/setup-nulfrog-skills`** immediately afterward to make `AGENTS.md` canonical, wire concise communication, and configure the `spec` provenance label.
