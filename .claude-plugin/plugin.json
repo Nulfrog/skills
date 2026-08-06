@@ -1,6 +1,6 @@
 {
   "name": "nulfrog-skills",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Nulfrog's customized fork of Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more.",
   "author": {
     "name": "Nulfrog",

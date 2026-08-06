@@ -1,5 +1,21 @@
 # mattpocock-skills
 
+## 1.2.3
+
+### Patch Changes
+
+- [`b2278ce`](https://github.com/Nulfrog/skills/commit/b2278ce988f04df743203f72f5b5021fd6a8a9ff) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Let `/setup-nulfrog-skills` leave a fork's inherited `CLAUDE.md` direction alone.
+
+  The overlay made `AGENTS.md` canonical unconditionally, which is the wrong move in a repo that tracks an upstream keeping its instructions in `CLAUDE.md`. Both arrangements land every agent on a single source, so inverting the direction wins nothing but consistency — and it moves the fork's divergence onto the file upstream edits most, so every sync conflicts. The write step now names that exception and asks for the direction it found and why it kept it.
+
+- [`b2278ce`](https://github.com/Nulfrog/skills/commit/b2278ce988f04df743203f72f5b5021fd6a8a9ff) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Make `/to-spec`'s `spec` provenance label optional.
+
+  The step that applies `spec` alongside `ready-for-agent` read as unconditional, so in a repo that ran only `/setup-matt-pocock-skills` the agent would reach for a label the tracker has never heard of — and, on a real tracker, could create it. The label is now explicitly the one `/setup-nulfrog-skills` configures: where it is missing, the spec publishes under `ready-for-agent` alone and the skill says so rather than inventing it.
+
+- [`b2278ce`](https://github.com/Nulfrog/skills/commit/b2278ce988f04df743203f72f5b5021fd6a8a9ff) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Open every HITL `/wayfinder` ticket with a **briefing**.
+
+  Working through a map, the agent claimed the next frontier ticket and went straight to its first question — but by the time the frontier reaches a ticket, the human has usually lost the backstory the question depends on, and can't answer it well. A new step now briefs them first, written for someone seeing the effort for the first time: it **sets the scene** in plain domain language — what's being built, the problem it solves, a concrete instance of the case at hand — before any tracker reference, then gives the destination, the decisions the ticket stands on, the question it asks, and what resolving it unblocks. It closes by naming the question it would open with, so a wrong thread can be redirected before a turn is spent on it, and the first question waits until they've responded.
+
 ## 1.2.2
 
 ### Patch Changes
