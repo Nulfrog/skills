@@ -1,11 +1,11 @@
 {
-  "name": "mattpocock-skills",
+  "name": "nulfrog-skills",
   "version": "1.2.2",
   "private": true,
-  "description": "Matt Pocock's agent skills for real engineering",
+  "description": "Nulfrog's customized fork of Matt Pocock's agent skills for real engineering",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattpocock/skills"
+    "url": "https://github.com/Nulfrog/skills"
   },
   "license": "MIT",
   "scripts": {

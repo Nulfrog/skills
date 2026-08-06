@@ -35,10 +35,11 @@ The glossary and the ADR are held to different standards, and conflating them is
 | | `CONTEXT.md` | `docs/adr/NNNN-slug.md` |
 | --- | --- | --- |
 | Holds | Terms. What a thing **is**, in one or two sentences, with rejected synonyms under `_Avoid_` | One decision, in one to three sentences: context, choice, reason |
-| Bar to write | A vague term became canonical | **All three**: hard to reverse, surprising without context, the result of a real trade-off |
+| Bar to write | A vague term became canonical, and you confirmed the term and its definition | **All three**: hard to reverse, surprising without context, the result of a real trade-off |
 | Written | Inline, the moment the term is settled | Offered, not assumed |
 | Never holds | Implementation details, a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), a scratch pad, general programming concepts | A diary of every choice made this session |
 
+A term is not settled until you say so: the proposed term and definition are put to you, and only an explicit yes puts it in the glossary.
 Miss any one of the ADR's three tests and there is no ADR. An easily-reversed decision will just get reversed; an unsurprising one is nobody's question; one with no real alternative records that you did the obvious thing.
 
 The `CONTEXT.md` rule is the one to actually hold onto, because it is the one that breaks in the field. **It is a glossary and nothing else.** Left unchecked, models treat "write to `CONTEXT.md`" as permission to persist every answer you give, and the file turns into a running spec — this is the most-reported problem with the skill, across several models.

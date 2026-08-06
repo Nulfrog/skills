@@ -1,0 +1,3 @@
+interface:
+  display_name: "Commit to Git"
+  short_description: "Stage and commit changes safely"

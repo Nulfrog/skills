@@ -16,7 +16,9 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Check with the user that these seams match their expectations.
 
-3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+3. Write the spec using the template below, then publish it to the project issue tracker. Apply the configured local equivalents of both labels:
+   - `ready-for-agent` — the canonical triage state; no additional triage is needed.
+   - `spec` — a provenance/category label identifying issues published by `/to-spec`, configured by `/setup-nulfrog-skills` and recorded under **Category labels** in the triage-label doc. It is not a triage state and must not replace `ready-for-agent`. If no such label is configured for this repo, apply `ready-for-agent` alone and say so — don't invent the label on the tracker.
 
 <spec-template>
 

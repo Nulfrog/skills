@@ -6,7 +6,9 @@ Most of these skills are **user-invoked**: the agent will never fire them for yo
 
 Act whenever a promoted skill is added, renamed, or has its behaviour changed: create or re-sync its docs page. A rename moves the file too (`docs/<bucket>/<old>.md` → `docs/<bucket>/<new>.md`), because the published URL tracks the name; a skill that moves between `engineering/` and `productivity/` moves its docs file to the matching folder. Skills in `misc/`, `in-progress/`, and `deprecated/` get no page — none of those buckets is promoted. A skill moving *out* of one of them into `engineering/` or `productivity/` gains a page; one moving the other way loses it.
 
-Because these pages are published on `aihero.dev`, **every link is absolute** — never a repo-relative path. A link to another skill points at `https://aihero.dev/skills-<name>`; a link into the repo points at its full `https://github.com/mattpocock/skills/...` URL. A relative link that works in the repo breaks once published.
+Because these pages are published on `aihero.dev`, **every link is absolute** — never a repo-relative path. A link to another skill points at `https://aihero.dev/skills-<name>`; a link into the repo points at its full `https://github.com/Nulfrog/skills/...` URL. A relative link that works in the repo breaks once published.
+
+Only skills that exist upstream have an `aihero.dev` page. **A skill that exists only in this fork is linked at its `SKILL.md` on GitHub** — `https://github.com/Nulfrog/skills/blob/main/skills/<bucket>/<name>/SKILL.md` — because `https://aihero.dev/skills-<name>` would 404 for it. That applies wherever the fork-only skill is named, including from the pages of upstream skills.
 
 There is no H1 — the published page takes its title from the slug.
 

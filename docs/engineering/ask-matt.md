@@ -31,6 +31,12 @@ The word the skill gives you to think with is **flow**: a path *through* the ski
 - **Standalones**, off every flow, reached for on their own terms — the prototype, the questionnaire, the merge conflict you are already sitting in.
 - **A vocabulary layer underneath**, the two references the other skills pull in when the words rather than the process are the problem.
 
+## Nulfrog additions
+
+Before a grill, [prepare-for-grill](https://github.com/Nulfrog/skills/blob/main/skills/productivity/prepare-for-grill/SKILL.md) checks that its prompt and any sources are consistent and small enough to converge. It splits independent decision trees into separate grills and routes a huge, foggy effort to [wayfinder](https://aihero.dev/skills-wayfinder), rather than mistaking it for a settled multi-session build.
+
+For repository setup, run [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills), then [setup-nulfrog-skills](https://github.com/Nulfrog/skills/blob/main/skills/engineering/setup-nulfrog-skills/SKILL.md) to make `AGENTS.md` canonical, wire concise communication, and configure `spec` provenance. For Git maintenance, [git-renormalize](https://github.com/Nulfrog/skills/blob/main/skills/engineering/git-renormalize/SKILL.md) clears line-ending phantoms, and [git-commit](https://github.com/Nulfrog/skills/blob/main/skills/engineering/git-commit/SKILL.md) stages and commits deliberately, then checks remote drift before offering to push.
+
 ## The phase boundary
 
 The other idea it hands you is the **phase boundary**. A phase is a chunk of work inside a session — the [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling), the implementation, the QA — and the boundary between two of them is the only place the question "what do I do with this context?" belongs. Mid-phase there is nothing to decide: continue, or split what is left into [subagents](https://www.aihero.dev/ai-coding-dictionary/subagent).

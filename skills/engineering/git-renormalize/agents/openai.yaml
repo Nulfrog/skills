@@ -1,0 +1,3 @@
+interface:
+  display_name: "Git Renormalize"
+  short_description: "Clear phantom line-ending changes"

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Prepare For Grill"
+  short_description: "Preflight a prompt before grilling"
+policy:
+  allow_implicit_invocation: false
