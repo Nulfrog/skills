@@ -10,7 +10,7 @@
 
 # Skills For Real Engineers
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
+[![skills.sh](https://skills.sh/b/Nulfrog/skills)](https://skills.sh/Nulfrog/skills)
 
 My agent skills that I use every day to do real engineering - not vibe coding.
 
@@ -24,7 +24,7 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 
 ## Installation (30-second setup)
 
-A plugin updates itself. [skills.sh](https://skills.sh/mattpocock/skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.
+A plugin updates itself. [skills.sh](https://skills.sh/Nulfrog/skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.
 
 ### 1. Get the skills
 
@@ -32,10 +32,18 @@ A plugin updates itself. [skills.sh](https://skills.sh/mattpocock/skills) copies
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin install mattpocock-skills@claude-plugins-official
+claude plugin marketplace add Nulfrog/skills
+claude plugin install nulfrog-skills@nulfrog
 ```
 
-Updates itself by default.
+Or, from inside a session:
+
+```
+/plugin marketplace add Nulfrog/skills
+/plugin install nulfrog-skills@nulfrog
+```
+
+This fork ships its own marketplace, so add it first; after that, updates arrive automatically.
 
 </details>
 
@@ -43,8 +51,8 @@ Updates itself by default.
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add mattpocock/skills
-codex plugin add mattpocock-skills@mattpocock
+codex plugin marketplace add Nulfrog/skills
+codex plugin add nulfrog-skills@nulfrog
 ```
 
 Updates itself at startup.
@@ -55,8 +63,8 @@ Updates itself at startup.
 <summary><strong>GitHub Copilot</strong> (CLI and VS Code)</summary>
 
 ```bash
-copilot plugin marketplace add mattpocock/skills
-copilot plugin install mattpocock-skills@mattpocock
+copilot plugin marketplace add Nulfrog/skills
+copilot plugin install nulfrog-skills@nulfrog
 ```
 
 Then, once, add to `~/.copilot/settings.json`:
@@ -64,12 +72,12 @@ Then, once, add to `~/.copilot/settings.json`:
 ```json
 {
   "extraKnownMarketplaces": {
-    "mattpocock": { "source": { "source": "github", "repo": "mattpocock/skills" }, "autoUpdate": true }
+    "nulfrog": { "source": { "source": "github", "repo": "Nulfrog/skills" }, "autoUpdate": true }
   }
 }
 ```
 
-In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/mattpocock/skills`. It updates daily.
+In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/Nulfrog/skills`. It updates daily.
 
 </details>
 
@@ -77,8 +85,8 @@ In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.c
 <summary><strong>Gemini CLI</strong> (manual updates)</summary>
 
 ```bash
-gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
-gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
+gemini skills install https://github.com/Nulfrog/skills.git --path skills/engineering
+gemini skills install https://github.com/Nulfrog/skills.git --path skills/productivity
 ```
 
 Re-run both commands to update.
@@ -89,10 +97,10 @@ Re-run both commands to update.
 <summary><strong>Any other agent, or editable files</strong> (manual updates)</summary>
 
 ```bash
-npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose
+npx skills@latest add Nulfrog/skills -a <agent>  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose
 ```
 
-When the installer asks which skills to take, include `setup-matt-pocock-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
+When the installer asks which skills to take, include both `setup-matt-pocock-skills` and `setup-nulfrog-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
 
 </details>
 
@@ -104,7 +112,11 @@ In your agent, run it once per repo. It will:
 - Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)
 - Ask you where you want to save any docs we create
 
-### 3. Bam - you're ready to go.
+### 3. Run `/setup-nulfrog-skills`
+
+Also once per repo, after the base setup. It makes `AGENTS.md` canonical, wires concise communication, and configures the `spec` provenance label used by `/to-spec`.
+
+### 4. Bam - you're ready to go.
 
 ## Why These Skills Exist
 
@@ -221,6 +233,7 @@ Skills I use daily for code work.
 - **[triage](./skills/engineering/triage/SKILL.md)**: Move issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
+- **[setup-nulfrog-skills](./skills/engineering/setup-nulfrog-skills/SKILL.md)**: Apply Nulfrog's local setup conventions on top of `setup-matt-pocock-skills`: AGENTS.md as the canonical agent doc, concise-communication wiring, and a `spec` provenance label. Run once, after the base setup.
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn the current conversation into a spec and publish it to the issue tracker. No interview, just synthesizes what you've already discussed.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, written as text in a local file, or as native blocking links on a real tracker.
 - **[implement](./skills/engineering/implement/SKILL.md)**: Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
@@ -238,6 +251,7 @@ Skills I use daily for code work.
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[code-review](./skills/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.
 - **[pr](./skills/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).
+- **[decision-review](./skills/engineering/decision-review/SKILL.md)**: Two-axis review of a decision a session just changed: **Coherence** (does it agree with the ADRs and `GLOSSARY.md` already in the repo?) and **Conformance** (where does the codebase diverge from it?), run as parallel sub-agents. Fixes the docs and the code that mechanically drifted from them; specifies the rest.
 - **[wizard](./skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
 
 ### Productivity
