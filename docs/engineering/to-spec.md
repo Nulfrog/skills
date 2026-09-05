@@ -19,7 +19,9 @@ Reach for it when the build is too big for one agent [session](https://www.aiher
 
 ## Prerequisites
 
-`to-spec` publishes the spec as an issue, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must have configured a tracker and the triage-label vocabulary for this repo first. Either kind works: a real tracker like GitHub, or local markdown files under `.scratch/`, which is supported out of the box.
+`to-spec` publishes the spec as an issue, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must have configured a tracker and the triage-label vocabulary for this repo first. Either kind works: a real tracker like GitHub, or local markdown files under `.scratch/`, which is supported out of the box. Run Nulfrog's [setup-nulfrog-skills](https://github.com/Nulfrog/skills/blob/main/skills/engineering/setup-nulfrog-skills/SKILL.md) overlay after it.
+
+The overlay configures two labels with different meanings. `ready-for-agent` is the triage **state**, while `spec` is the **provenance** marking an issue created by `/to-spec`; Nulfrog's `/to-spec` applies both. Skip the overlay and nothing breaks: with no `spec` label configured, the spec is published under `ready-for-agent` alone and the skill says so rather than creating a label on your tracker. Tickets published by [to-tickets](https://aihero.dev/skills-to-tickets) receive only `ready-for-agent`, because they are agent-ready outputs rather than source specifications.
 
 ## The spec is a decision record
 

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup Nulfrog Skills"
+  short_description: "Apply Nulfrog setup conventions"
+policy:
+  allow_implicit_invocation: false

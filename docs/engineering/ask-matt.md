@@ -31,6 +31,12 @@ The word the skill gives you to think with is **flow**: a path *through* the ski
 - **Standalones**, off every flow, reached for on their own terms: the prototype, the questionnaire, the merge conflict you are already sitting in.
 - **A vocabulary layer underneath**, the two references the other skills pull in when the words rather than the process are the problem.
 
+## Nulfrog additions
+
+A grilling session that writes an ADR or resolves a glossary term closes out with [decision-review](https://github.com/Nulfrog/skills/blob/main/skills/engineering/decision-review/SKILL.md), which checks the changed decision against the ADRs already in the repo and against the code. It is the planning half's counterpart to [code-review](https://aihero.dev/skills-code-review), and it sits between [grill-with-docs](https://aihero.dev/skills-grill-with-docs) and [to-spec](https://aihero.dev/skills-to-spec) on the main flow.
+
+For repository setup, run [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills), then [setup-nulfrog-skills](https://github.com/Nulfrog/skills/blob/main/skills/engineering/setup-nulfrog-skills/SKILL.md) to make `AGENTS.md` canonical, wire concise communication, and configure `spec` provenance.
+
 ## The phase boundary
 
 The other idea it hands you is the **phase boundary**. A phase is a chunk of work inside a session (the [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling), the implementation, the QA), and the boundary between two of them is the only place the question "what do I do with this context?" belongs. Mid-phase there is nothing to decide: continue, or split what is left into [subagents](https://www.aihero.dev/ai-coding-dictionary/subagent).

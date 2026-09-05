@@ -14,7 +14,9 @@ A **flow** is a path through the skills. Most paths run along one **main flow**,
 
 The route most work travels. You have an idea and want it built.
 
-1. **`/grill-with-docs`** sharpens the idea by interview. Start here whenever you are **working in a working directory**: it's stateful, retaining what it learns in `CONTEXT.md` and ADRs. (No working directory? Use `/grill-me` instead, covered under Standalone. Both run the same `/grilling` primitive; `grill-with-docs` is the one that leaves a paper trail, which makes it the better of the two whenever a repo is there to leave it in.)
+1. **`/grill-with-docs`** sharpens the idea by interview. Start here whenever you are **working in a working directory**: it's stateful, retaining what it learns in `CONTEXT.md` and ADRs. (No working directory? Use `/grill-me` instead, covered under Standalone. Both run the same `/grilling` primitive; `grill-with-docs` is the one that leaves a paper trail, which makes it the better of the two whenever a repo is there to leave it in.) An effort already known to be huge and foggy starts at **`/wayfinder`** instead (see On-ramps).
+
+   A session that leaves a paper trail, a new or amended ADR or a resolved glossary term, closes out with **`/decision-review`**, a two-axis review (**Coherence** + **Conformance**) of the decision that just changed. It fixes the docs, and the code that drifted from them mechanically. Behavioural divergence it specifies instead, handing it to `/to-spec`, unless the divergent code looks deliberate, which is the signal that the decision rather than the code is what's wrong. Reach for it on its own whenever a decision has moved and you want to know what it breaks.
 2. **Branch: can you settle every question in conversation?** If a question needs a runnable answer (state, business logic, a UI you have to see), detour through a prototype, bridged by **`/handoff`** in both directions (a prototype lives in its own directory, which is exactly what `/handoff` is for; see Phase boundaries):
    - **`/handoff`** out, then open a fresh session against that file,
    - **`/prototype`** to answer the question with throwaway code,
@@ -87,4 +89,4 @@ Off the main flow entirely.
 
 ## Precondition
 
-**`/setup-matt-pocock-skills`**: run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work.
+**`/setup-matt-pocock-skills`**: run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work. In the Nulfrog fork, run **`/setup-nulfrog-skills`** immediately afterward to make `AGENTS.md` canonical, wire concise communication, and configure the `spec` provenance label.

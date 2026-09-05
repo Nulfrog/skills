@@ -1,0 +1,3 @@
+interface:
+  display_name: "Decision Review"
+  short_description: "Review what a changed decision breaks"

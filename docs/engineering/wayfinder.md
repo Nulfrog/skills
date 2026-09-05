@@ -41,7 +41,7 @@ The **frontier** is the open, unblocked, unclaimed tickets (the edge of the know
 
 ## The four decision-ticket types
 
-Every ticket carries a `wayfinder:<type>` label, and is either **[HITL](https://www.aihero.dev/ai-coding-dictionary/human-in-the-loop)** (worked with a human who speaks for themselves) or **[AFK](https://www.aihero.dev/ai-coding-dictionary/afk)**, driven by the agent alone. A HITL ticket only resolves through the live exchange; an agent that answers its own [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) questions has broken it.
+Every ticket carries a `wayfinder:<type>` label, and is either **[HITL](https://www.aihero.dev/ai-coding-dictionary/human-in-the-loop)** (worked with a human who speaks for themselves) or **[AFK](https://www.aihero.dev/ai-coding-dictionary/afk)**, driven by the agent alone. A HITL ticket only resolves through the live exchange; an agent that answers its own [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) questions has broken it. Because the frontier can reach a ticket long after you charted it, that exchange opens with a short **briefing** rather than a cold question: a paragraph or two of scene-setting that runs straight into the first round.
 
 | Type | Mode | Reach for it when | Resolved by |
 | --- | --- | --- | --- |
@@ -91,6 +91,7 @@ It is this skill, renamed to `wayfinder` in v1.1 and invoked as `/wayfinder`. "D
 - The destination is written down and agreed before a single ticket exists.
 - Every open ticket reads as a question. Any ticket that reads "build the X" is either mis-typed or belongs downstream of the map.
 - You can look at your tracker and see which tickets are takeable without opening the map, since that is the frontier rendering itself through native blocking.
+- A HITL ticket opens with a briefing of one or two short paragraphs, the scene in plain domain language followed by the question and what it rests on, and goes straight into the work, so a grilling ticket's first round of questions arrives in the same message.
 - A session resolves one ticket, posts the answer as a resolution comment, closes it, and leaves one line on the map's *Decisions so far*. Then it stops.
 - **Not yet specified** shrinks over time. A patch of fog that graduates into a ticket disappears from that section rather than living in both places.
 - When the opening breadth-first grill turns up no fog at all, the skill stops and tells you the effort is small enough to skip the map.
