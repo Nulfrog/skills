@@ -67,7 +67,7 @@ If the section already exists and holds only that pointer line (the form earlier
         "hooks": [
           {
             "type": "command",
-            "command": "echo '# Communication Style\n\nTalk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `CONTEXT.md`. Apply this to every reply, for the whole session.'"
+            "command": "echo 'Talk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `CONTEXT.md`. Apply this to every reply, for the whole session.'"
           }
         ]
       }
@@ -81,7 +81,7 @@ The `AGENTS.md` text loads once, at session start. The hook repeats the rule nex
 The command prints the rule as static text, so it has nothing to fail on. Three details keep it reliable across Windows, macOS, and Linux:
 
 - It needs no runtime. On Windows, Claude Code runs hook commands in Git Bash, or in PowerShell when Git Bash is not installed. `echo` exists in both shells, and on macOS and Linux.
-- Single quotes make the text literal in bash and in PowerShell, so the backticks and the blank line pass through unchanged. The rule text must not contain a single quote, because a quote ends the string in both shells.
+- Single quotes make the text literal in bash and in PowerShell, so the backticks pass through unchanged. The rule text must not contain a single quote, because a quote ends the string in both shells.
 - It reads no file, so a moved or missing rule file cannot make it print nothing. An older version of this hook ran `node` to read the `.mdc` rule: it failed with only a small notice on a machine without Node, and it printed nothing when the file was missing.
 
 ### `spec` provenance label
