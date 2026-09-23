@@ -41,19 +41,23 @@ The base skill's `## Agent skills` block still applies; write it into `AGENTS.md
 
 ### Communication style
 
-Wire up the concise-communication convention in three places. If any piece already exists, leave the user's wording as-is rather than overwriting it.
+Wire up the concise-communication convention in three places. If any piece already exists, leave the user's wording as-is rather than overwriting it. The exceptions are the old pointer line in step 1 and the old `node` hook in step 3.
 
-1. **`AGENTS.md` section.** Ensure `AGENTS.md` contains a `## Communication style` section. If it's missing, add it (near the top is fine).
+1. **`AGENTS.md` section.** Ensure `AGENTS.md` contains a `## Communication style` section that holds the rule text itself. If it's missing, add it (near the top is fine).
 
 ```markdown
 ## Communication style
 
-Follow `.cursor/rules/concise-communication.mdc`.
+Talk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `CONTEXT.md`. Apply this to every reply, for the whole session.
 ```
 
-2. **Cursor rule.** Write `.cursor/rules/concise-communication.mdc`, copying the [concise-communication.mdc](./concise-communication.mdc) seed template. The `alwaysApply: true` frontmatter makes Cursor load it into every conversation.
+Write the text, not a pointer to the rule file. A line such as "Follow `.cursor/rules/concise-communication.mdc`" loads nothing: an agent sees the rule only if it decides to open that file. Codex reads `AGENTS.md` as plain text and never opens `.cursor/`, and the Claude hook in step 3 does not fire for subagents. Inline text reaches Claude, Codex, Cursor, and subagents that load project instructions at session start, and Claude re-reads it after compaction.
 
-3. **Claude `UserPromptSubmit` hook.** Merge the hook below into `.claude/settings.json` so the rule body is re-injected on every prompt submit. If the file doesn't exist, create it with this content. If it exists, merge into the existing `hooks` object (don't clobber other hooks or settings); if a `UserPromptSubmit` array already references this rule, leave it.
+If the section already exists and holds only that pointer line (the form earlier runs of this skill wrote), replace the pointer with the text above.
+
+2. **Cursor rule.** Write `.cursor/rules/concise-communication.mdc`, copying the [concise-communication.mdc](./concise-communication.mdc) seed template. The `alwaysApply: true` frontmatter makes Cursor load it into every conversation. The rule text now lives in three places: the `AGENTS.md` section, this file's body, and the hook in step 3. Keep all three the same, so agents never get two versions of one rule.
+
+3. **Claude `UserPromptSubmit` hook.** Merge the hook below into `.claude/settings.json` so the rule is re-injected on every prompt submit. If the file doesn't exist, create it with this content. If it exists, merge into the existing `hooks` object (don't clobber other hooks or settings). If a `UserPromptSubmit` array already holds a hook for this rule, leave it, unless it is the older `node -e` command that reads the `.mdc` file: replace that one with the command below.
 
 ```json
 {
@@ -63,7 +67,7 @@ Follow `.cursor/rules/concise-communication.mdc`.
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"const fs=require('fs'),p=require('path');const f=p.join(process.env.CLAUDE_PROJECT_DIR||process.cwd(),'.cursor','rules','concise-communication.mdc');if(fs.existsSync(f)){console.log(fs.readFileSync(f,'utf8').replace(/^---[\\s\\S]*?---\\r?\\n/,''))}\""
+            "command": "echo '# Communication Style\n\nTalk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `CONTEXT.md`. Apply this to every reply, for the whole session.'"
           }
         ]
       }
@@ -72,11 +76,13 @@ Follow `.cursor/rules/concise-communication.mdc`.
 }
 ```
 
-The command reads the `.mdc` rule, strips its frontmatter, and prints the body, so the rule and the hook stay in sync from a single source. Three details keep it reliable across Windows, macOS, and Linux:
+The `AGENTS.md` text loads once, at session start. The hook repeats the rule next to every prompt, so the rule stays close to the current turn in a long session.
 
-- It resolves the path from `CLAUDE_PROJECT_DIR` (the repo root) rather than the working directory, so the rule still loads when a session starts in a subdirectory.
-- It reads that variable inside `node` rather than as `$CLAUDE_PROJECT_DIR`, because `cmd.exe` and PowerShell don't expand `$VAR` the way a POSIX shell does. The command body contains no `$`, backtick, or `%`, so no shell rewrites it.
-- `path.join` builds the path with the platform's own separator, and a missing rule file prints nothing instead of throwing.
+The command prints the rule as static text, so it has nothing to fail on. Three details keep it reliable across Windows, macOS, and Linux:
+
+- It needs no runtime. On Windows, Claude Code runs hook commands in Git Bash, or in PowerShell when Git Bash is not installed. `echo` exists in both shells, and on macOS and Linux.
+- Single quotes make the text literal in bash and in PowerShell, so the backticks and the blank line pass through unchanged. The rule text must not contain a single quote, because a quote ends the string in both shells.
+- It reads no file, so a moved or missing rule file cannot make it print nothing. An older version of this hook ran `node` to read the `.mdc` rule: it failed with only a small notice on a machine without Node, and it printed nothing when the file was missing.
 
 ### `spec` provenance label
 

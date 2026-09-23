@@ -12,7 +12,7 @@ Reach for it once when adopting Nulfrog skills in a repository, immediately afte
 
 ## Prerequisites
 
-Run [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) first so the issue tracker, triage labels, and domain documentation are already configured. The concise Claude hook also expects Node.js.
+Run [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) first so the issue tracker, triage labels, and domain documentation are already configured.
 
 ## The Nulfrog overlay
 
@@ -25,7 +25,7 @@ It also separates issue state from provenance. [to-spec](https://aihero.dev/skil
 ## It's working if
 
 - One of `AGENTS.md` and `CLAUDE.md` holds the content and the other points at it: `AGENTS.md` by default, or the inherited direction in a fork that tracks an upstream.
-- Cursor and Claude share the concise-communication rule.
+- `AGENTS.md` holds the concise-communication rule text itself, not a pointer to the rule file, and the Cursor rule and the Claude hook carry the same text. The hook prints static text and needs no runtime such as Node.js.
 - The tracker documents `spec` separately from triage states.
 
 ## Where it fits
