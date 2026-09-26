@@ -1,6 +1,6 @@
 ## What it does
 
-`setup-nulfrog-skills` applies Nulfrog's repository conventions on top of the upstream engineering setup: `AGENTS.md` becomes canonical, `CLAUDE.md` points to it, concise communication is wired across agents, and `spec` records specification provenance.
+`setup-nulfrog-skills` applies Nulfrog's repository conventions on top of the upstream engineering setup: `AGENTS.md` becomes canonical, `CLAUDE.md` points to it, concise communication is wired across agents, ADRs are overwritten in place, and `spec` records specification provenance.
 
 It is an **overlay**, not a replacement. The upstream setup remains responsible for the issue tracker, triage vocabulary, and domain-doc layout.
 
@@ -20,12 +20,15 @@ The overlay keeps agent guidance in one place: `AGENTS.md` contains the communic
 
 One repo is exempt: a fork whose upstream owns `CLAUDE.md` and edits it often keeps the direction it inherited. Either arrangement lands every agent on a single source, so inverting it would buy consistency at the price of a merge conflict on the upstream file that changes most.
 
+It tells every agent to overwrite an ADR in place when a decision changes, with a short rule under **Domain docs** in `AGENTS.md`, even when the old decision was already implemented. No amendment note and no superseding ADR is added, because git history already holds the old text. The choice that was replaced moves into the ADR's **Considered Options** with why it was dropped, so developers and agents reading the current ADR still see what was tried. [decision-review](https://aihero.dev/skills-decision-review) follows the same rule, so an agent that edits an ADR by hand and one that fixes it through a review do the same thing.
+
 It also separates issue state from provenance. [to-spec](https://aihero.dev/skills-to-spec) applies both `ready-for-agent` and `spec`; [to-tickets](https://aihero.dev/skills-to-tickets) applies only `ready-for-agent`, so `spec` means “source specification” rather than another triage state.
 
 ## It's working if
 
 - One of `AGENTS.md` and `CLAUDE.md` holds the content and the other points at it: `AGENTS.md` by default, or the inherited direction in a fork that tracks an upstream.
 - `AGENTS.md` holds the concise-communication rule text itself, not a pointer to the rule file, and the Cursor rule and the Claude hook carry the same text. The hook prints static text and needs no runtime such as Node.js.
+- `AGENTS.md` tells agents, under **Domain docs**, to overwrite an ADR in place, not to amend it or supersede it with a new one, and to list the replaced choice under Considered Options.
 - The tracker documents `spec` separately from triage states.
 
 ## Where it fits

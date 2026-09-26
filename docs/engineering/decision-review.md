@@ -1,6 +1,6 @@
 ## What it does
 
-`decision-review` takes the decisions a [session](https://www.aihero.dev/ai-coding-dictionary/session) just changed (a new ADR, an amended one, a resolved glossary term) and reviews them along two axes: **Coherence**, whether the change agrees with the ADRs and `CONTEXT.md` already in the repo, and **Conformance**, where the codebase diverges from the decision as now written. Each axis runs as its own [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent), and the two reports come back separately.
+`decision-review` takes the decisions a [session](https://www.aihero.dev/ai-coding-dictionary/session) just changed (a new ADR, a changed one, a resolved glossary term) and reviews them along two axes: **Coherence**, whether the change agrees with the ADRs and `CONTEXT.md` already in the repo, and **Conformance**, where the codebase diverges from the decision as now written. Each axis runs as its own [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent), and the two reports come back separately.
 
 It fixes what it finds rather than handing you a list: the glossary and ADR edits, and the code that has mechanically drifted from them. Where a divergence is behavioural rather than mechanical it stops and specifies the work instead, on the grounds that an ADR is not a [spec](https://www.aihero.dev/ai-coding-dictionary/spec).
 
@@ -31,6 +31,8 @@ Conformance is scoped by the **terms** the decision turns on, taken from the ADR
 
 Coherence findings are always fixed, docs against docs, applied through [domain-modeling](https://aihero.dev/skills-domain-modeling). They go first, because a coherence fix changes what conforming even means.
 
+An ADR the change has outdated is **overwritten in place**: it is rewritten to state the decision now in force, with no amendment note, no `superseded by` status, and no new ADR beside it. The choice it replaces moves into the ADR's **Considered Options**, with a line on why it was dropped, so anyone reading the current ADR still sees what was tried and nobody proposes it again. Git history already holds the full old text, so the ADR set always reads as the decisions that apply today, and nobody has to follow a chain of amendments to find out which one wins. This replaces the rule in domain-modeling's ADR format, which supersedes an ADR that was acted on. If the session wrote a new ADR for a decision an existing ADR already records, the review folds the new one into the existing ADR and deletes the new file, so the decision keeps its number and the code that cites it stays correct.
+
 Conformance findings split by the *kind* of fix, not its size:
 
 | Divergence | Example | What happens |
@@ -54,6 +56,9 @@ Its axes are aimed at a code diff: Standards checks coding standards plus a smel
 **Will it fill my tracker with issues?**
 No, and it cannot: it publishes nothing at all. Every behavioural finding is held until both axes are in and then folded into one brief, which it hands you to run `/to-spec` on. A review that finds nothing behavioural writes no brief. The step that turns one spec into many tickets is [to-tickets](https://aihero.dev/skills-to-tickets), and that is yours to invoke too.
 
+**Why overwrite an ADR instead of superseding it?**
+A superseded ADR leaves two documents that disagree, and a reader, human or agent, has to notice the status line and follow it to learn which one is in force. An amendment note does the same inside one file. Overwriting keeps one current statement per decision, and the history of how it got there is in git, where `git log -p` on the file shows every version. The one piece of history worth keeping in view, the choice that was dropped and why, stays in the ADR under **Considered Options**.
+
 **It found nothing. Is that a failure?**
 No, and it is the common result for a small decision. An empty Conformance report on a brand-new decision usually means the code has not been written yet, which is exactly right at the head of the build chain.
 
@@ -62,6 +67,7 @@ No, and it is the common result for a small decision. An empty Conformance repor
 - The two reports arrive under separate headings, and neither is ranked against the other.
 - Every conformance finding quotes a file and line on one side and a clause of the decision on the other.
 - The docs fixes and the mechanical code fixes land in the session, and the test suite is green before it hands back.
+- An ADR the change outdated reads as the current decision, with no amendment note and no superseding ADR, and names the choice it replaced under **Considered Options**.
 - Behavioural findings leave as one brief for you to publish, not as edits and not as a pile of issues, and one sometimes sends you back into the interview instead.
 - On a repo whose ADRs have drifted, the first run is noisy, reporting a backlog rather than a regression.
 

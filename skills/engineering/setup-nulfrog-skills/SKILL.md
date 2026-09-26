@@ -1,6 +1,6 @@
 ---
 name: setup-nulfrog-skills
-description: Apply this repo's Nulfrog-specific setup conventions on top of setup-matt-pocock-skills: AGENTS.md as the canonical agent doc with CLAUDE.md as a thin pointer, concise-communication wiring, and a `spec` provenance label for issues created by /to-spec. Run once, after setup-matt-pocock-skills.
+description: Apply this repo's Nulfrog-specific setup conventions on top of setup-matt-pocock-skills: AGENTS.md as the canonical agent doc with CLAUDE.md as a thin pointer, concise-communication wiring, the rule that ADRs are overwritten in place, and a `spec` provenance label for issues created by /to-spec. Run once, after setup-matt-pocock-skills.
 disable-model-invocation: true
 ---
 
@@ -83,6 +83,18 @@ The command prints the rule as static text, so it has nothing to fail on. Three 
 - It needs no runtime. On Windows, Claude Code runs hook commands in Git Bash, or in PowerShell when Git Bash is not installed. `echo` exists in both shells, and on macOS and Linux.
 - Single quotes make the text literal in bash and in PowerShell, so the backticks pass through unchanged. The rule text must not contain a single quote, because a quote ends the string in both shells.
 - It reads no file, so a moved or missing rule file cannot make it print nothing. An older version of this hook ran `node` to read the `.mdc` rule: it failed with only a small notice on a machine without Node, and it printed nothing when the file was missing.
+
+### ADRs are overwritten in place
+
+Ensure `AGENTS.md` holds this rule, at the end of the `### Domain docs` subsection that the base skill writes into the `## Agent skills` block:
+
+```markdown
+ADRs record only the decisions in force: one file per decision, always current. When a decision changes, including one already implemented, rewrite that same file to the new decision, and list the old choice under Considered Options with why it was dropped. Git history keeps the earlier text. This replaces the supersede rule in domain-modeling's `ADR-FORMAT.md`.
+```
+
+Keep the last sentence. It names the rule this one overrides, and without it smaller models follow `ADR-FORMAT.md` and supersede instead.
+
+If the rule is already there, leave it. If `AGENTS.md` has no `### Domain docs` subsection, add the rule at the end of the `## Agent skills` block. `/decision-review` follows the same rule when it fixes an ADR, so the repo's instruction and the skill agree.
 
 ### `spec` provenance label
 

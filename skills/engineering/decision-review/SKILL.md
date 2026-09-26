@@ -32,7 +32,7 @@ Send a single message with two `Agent` tool calls. Use the `general-purpose` sub
 
 **Coherence sub-agent prompt**: include the full text of every changed decision, the path and title of every *other* ADR, and `CONTEXT.md`. The brief:
 
-> "Report: (a) every existing ADR the changed decision contradicts, quoting both sides; (b) every existing ADR it supersedes or duplicates without saying so; (c) every `CONTEXT.md` term the change has made wrong, and every term the change relies on that the glossary does not define. Cite file and line for each side of every finding. Under 400 words."
+> "Report: (a) every existing ADR the changed decision contradicts, quoting both sides; (b) every existing ADR that records the same decision, or an earlier version of it, naming which file should hold the decision; (c) every `CONTEXT.md` term the change has made wrong, and every term the change relies on that the glossary does not define. Cite file and line for each side of every finding. Under 400 words."
 
 **Conformance sub-agent prompt**: include the full text of every changed decision and the terms from step 2. The brief:
 
@@ -46,7 +46,7 @@ Present the two reports under `## Coherence` and `## Conformance` headings, verb
 
 Fix every finding, coherence first, because a coherence fix changes what conforming even means and conformance work done before it can be wasted.
 
-**Coherence.** Apply each fix by calling the Skill tool with "domain-modeling", which owns the glossary and ADR formats, including whether an outdated ADR is superseded or overwritten.
+**Coherence.** Where the session wrote a new ADR for a decision an existing ADR already records, fold the new ADR into the existing one and delete the new file. Then apply each fix by calling the Skill tool with "domain-modeling", which owns the glossary and ADR formats. Tell it that ADRs record only the decisions in force, which replaces the "Superseding vs. overwriting" rule in its `ADR-FORMAT.md`: when a decision changes, even one already implemented, rewrite its existing ADR in place to the new decision, keep the context that still holds, and list the old choice under **Considered Options** with why it was dropped. Record only what the session decided: an effect it left open goes in the brief, not the ADR. Git history keeps the earlier text.
 
 **Conformance.** Sort each finding by whether the fix is mechanical or behavioural. Size is not the test: a rename across fifty files is mechanical, and a three-line change to what a function returns is not.
 
@@ -54,7 +54,7 @@ Fix every finding, coherence first, because a coherence fix changes what conform
 
 **Behavioural divergence** is where the code does something the decision says it shouldn't, or lacks something the decision requires. An ADR is not a spec: it constrains the outcome without fixing the mechanism, so *make the code conform* usually admits several implementations, and choosing between them is the deliberate design act the grill just did, not a drive-by edit. It also needs a test harness, which this skill does not provide.
 
-First set aside the ones that should never reach a tracker. The tell for both is that the divergent code looks **deliberate**: a test asserts it, a comment defends it, another ADR exempts it. Either the decision is the likelier mistake, in which case reopen it by calling the Skill tool twice, for "grilling" and "domain-modeling", and amend the ADR rather than filing work against it; or it is a genuine exemption, which goes into the ADR so the next run stops finding it.
+First set aside the ones that should never reach a tracker. The tell for both is that the divergent code looks **deliberate**: a test asserts it, a comment defends it, another ADR exempts it. Either the decision is the likelier mistake, in which case reopen it by calling the Skill tool twice, for "grilling" and "domain-modeling", and overwrite the ADR in place rather than filing work against it; or it is a genuine exemption, which goes into the ADR so the next run stops finding it.
 
 Specify what remains, and **exactly once**. Hold those findings until both axes are aggregated, then write **one** consolidated brief covering all of them, at the end of the review. Never one per finding: they all descend from the same decision, that shared cause is the most useful thing about them, and a tracker full of sibling issues loses it. A review with nothing left to carry writes no brief at all.
 
@@ -66,5 +66,6 @@ Trust the sub-agent's findings less on this axis than on coherence. It was a rea
 
 - Every changed decision was read in full, and both axes ran against it.
 - Every coherence finding and every mechanical divergence is fixed.
-- Every behavioural divergence left the session as an amended ADR, a recorded exemption, or part of the one brief handed to the user for `/to-spec`.
+- Each changed decision lives in one ADR that states it as now in force, with the choice it replaced under **Considered Options**.
+- Every behavioural divergence left the session as an ADR overwritten in place, a recorded exemption, or part of the one brief handed to the user for `/to-spec`.
 - Typechecking and the test suite pass.
