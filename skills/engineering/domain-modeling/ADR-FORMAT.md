@@ -18,16 +18,19 @@ That's it. An ADR can be a single paragraph. The value is in recording *that* a 
 
 Only include these when they add genuine value. Most ADRs won't need them.
 
-- **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`): useful when decisions are revisited
+- **Status** frontmatter (`proposed | accepted`): useful when a decision is recorded before it is agreed
 - **Considered Options**: only when the rejected alternatives are worth remembering
 - **Consequences**: only when non-obvious downstream effects need to be called out
 
-## Superseding vs. overwriting
+## When a decision changes
 
-`superseded by ADR-NNNN` leaves a breadcrumb back to the old decision, worth keeping only when that decision was acted on. So before superseding, look for code or usage implementing the original ADR:
+ADRs record only the decisions in force: one file per decision, always current. When a decision changes, including one already implemented, rewrite that same file to the new decision:
 
-- **Acted on** → supersede, so the breadcrumb explains why the implementation looks the way it does.
-- **Never acted on** → overwrite instead: edit the ADR in place to the new decision. A breadcrumb to a decision nothing implemented is clutter, not history.
+- Keep the context that still holds.
+- List the old choice under **Considered Options**, with why it was dropped, so nobody proposes it again.
+- Keep the number, so code and docs that cite the ADR stay correct. If the old slug would now mislead, rename it, then search for the old filename and update each hit until none is left.
+
+A withdrawn decision is tested like any other: if the reversal clears the three tests below, rewrite the ADR to record it, with the old choice under **Considered Options**; otherwise delete the file and the citations to it. Git history keeps the earlier text either way, so the ADR set always reads as what applies today.
 
 ## Numbering
 

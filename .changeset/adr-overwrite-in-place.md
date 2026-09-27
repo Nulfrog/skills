@@ -8,4 +8,4 @@ Overwrite an outdated ADR in place, in `/decision-review` and in the `AGENTS.md`
 
 `/setup-nulfrog-skills` writes the same rule into `AGENTS.md`, under **Domain docs**, so an agent that edits an ADR by hand follows it too:
 
-> ADRs record only the decisions in force: one file per decision, always current. When a decision changes, including one already implemented, rewrite that same file to the new decision, and list the old choice under Considered Options with why it was dropped. Git history keeps the earlier text. This replaces the supersede rule in domain-modeling's `ADR-FORMAT.md`.
+> ADRs record only the decisions in force: one file per decision, always current. When a decision changes, including one already implemented, rewrite that same file to the new decision. Every rewrite adds the old choice under a Considered Options heading, with why it was dropped. Git history keeps the earlier text.

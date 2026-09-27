@@ -68,6 +68,9 @@ Ask for it explicitly rather than waiting for it to accumulate. `/grill-with-doc
 **Can I keep the domain model and use my own ADR format?**
 Not cleanly today. The glossary half and the ADR half ship in one skill, so a team with an established ADR convention (different template, different location, different naming) gets instructions that conflict with its house style. The current options are to copy the skill locally and edit it, or to override the ADR conventions in your repo's own agent docs. Splitting the two apart is [an open request](https://github.com/mattpocock/skills/issues/557).
 
+**What happens to an ADR when the decision changes?**
+It is rewritten in place, even when the old decision was already implemented. The file keeps its number, states the new decision as the one in force, and lists the old choice under **Considered Options** with why it was dropped, so nobody proposes it again. There is no `superseded by` status and no second ADR: agents read every ADR they load, and a chain of superseded ones costs context and invites acting on the stale one. Git history keeps every earlier version. A decision withdrawn with nothing in its place has its ADR rewritten to record the reversal if the reversal clears the three ADR tests, and deleted if it does not.
+
 **Does a glossary actually earn its keep? It is one more artifact to review, and it can go stale.**
 Sometimes it does not, and it is worth being honest about where. DDD gets less useful the closer it gets to the implementation: the payoff is upstream, in naming and concept alignment, not in aggregates and layer ceremony. Synonym control matters at naming boundaries: module names, table names, status enums, issue titles, CLI commands. It matters much less in ordinary prose. There is also a live objection that domain terms compress communication *between humans* who already share them, and that an agent responds the same way to the plain-English description. On that reading, the glossary's value is keeping you and your reviewers aligned with what the agent is doing, not making the agent better. On a one-day build, skip it. And an unreviewed, agent-authored glossary is worse than none: it becomes confident-sounding lore that later sessions treat as truth.
 
@@ -79,6 +82,7 @@ No, and there is no plan for a skill that does. A domain language you do not und
 - It stops you mid-sentence to ask which of two things you meant, instead of picking one and moving on.
 - `CONTEXT.md` changes **during** the conversation, not in a burst at the end.
 - It refuses to write an ADR for something you could undo tomorrow, and says which of the three tests failed.
+- When a decision changes, the existing ADR is rewritten and no new ADR appears beside it.
 - New entries define what a thing *is* in one or two sentences and name the words you are giving up under `_Avoid_`.
 - It quotes your code back at you when your code and your sentence disagree.
 - `CONTEXT.md` gets shorter as often as it gets longer.
