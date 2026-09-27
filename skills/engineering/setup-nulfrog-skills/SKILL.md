@@ -89,10 +89,10 @@ The command prints the rule as static text, so it has nothing to fail on. Three 
 Ensure `AGENTS.md` holds this rule, at the end of the `### Domain docs` subsection that the base skill writes into the `## Agent skills` block:
 
 ```markdown
-ADRs record only the decisions in force: one file per decision, always current. When a decision changes, including one already implemented, rewrite that same file to the new decision, and list the old choice under Considered Options with why it was dropped. Git history keeps the earlier text. This replaces the supersede rule in domain-modeling's `ADR-FORMAT.md`.
+ADRs record only the decisions in force: one file per decision, always current. When a decision changes, including one already implemented, rewrite that same file to the new decision. Every rewrite adds the old choice under a Considered Options heading, with why it was dropped. Git history keeps the earlier text.
 ```
 
-Keep the last sentence. It names the rule this one overrides, and without it smaller models follow `ADR-FORMAT.md` and supersede instead.
+The rule repeats the one in `domain-modeling`'s `ADR-FORMAT.md`, so an agent that edits an ADR without loading that skill still follows it.
 
 If the rule is already there, leave it. If `AGENTS.md` has no `### Domain docs` subsection, add the rule at the end of the `## Agent skills` block. `/decision-review` follows the same rule when it fixes an ADR, so the repo's instruction and the skill agree.
 
