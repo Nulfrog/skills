@@ -6,4 +6,4 @@ disable-model-invocation: true
 
 Call the Skill tool twice, for "grilling" and "domain-modeling".
 
-Once the session has changed `CONTEXT.md` or written an ADR, call it again for "decision-review".
+Once the session has changed `CONTEXT.md` or written or rewritten an ADR, call it again for "decision-review".
