@@ -1,6 +1,6 @@
 ---
 name: setup-nulfrog-skills
-description: Apply this repo's Nulfrog-specific setup conventions on top of setup-matt-pocock-skills: AGENTS.md as the canonical agent doc with CLAUDE.md as a thin pointer, concise-communication wiring, the rule that ADRs are overwritten in place, and a `spec` provenance label for issues created by /to-spec. Run once, after setup-matt-pocock-skills.
+description: "Apply this repo's Nulfrog-specific setup conventions on top of setup-matt-pocock-skills: AGENTS.md as the canonical agent doc with CLAUDE.md as a thin pointer, concise-communication wiring, the rule that ADRs are overwritten in place, and a `spec` provenance label for issues created by /to-spec. Run once, after setup-matt-pocock-skills."
 disable-model-invocation: true
 ---
 
