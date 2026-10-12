@@ -112,4 +112,6 @@ These labels describe what an issue is; they are not triage states and may coexi
 | `spec` | `spec` | A source specification published by `/to-spec` |
 ```
 
+On GitHub or GitLab, create the label under its local string when the tracker lacks it (`gh label create` / `glab label create`), as the base skill does for the triage labels. `/to-spec` applies the label but never creates it, so a missing label fails the publish.
+
 Keep this section separate from the five canonical triage roles. Do not add `spec` to `/to-tickets` output.

@@ -22,14 +22,14 @@ One repo is exempt: a fork whose upstream owns `CLAUDE.md` and edits it often ke
 
 It tells every agent to overwrite an ADR in place when a decision changes, with a short rule under **Domain docs** in `AGENTS.md`, even when the old decision was already implemented. No amendment note and no superseding ADR is added, because git history already holds the old text. The choice that was replaced moves into the ADR's **Considered Options** with why it was dropped, so developers and agents reading the current ADR still see what was tried. The rule repeats the one in [domain-modeling](https://aihero.dev/skills-domain-modeling)'s ADR format, and [decision-review](https://github.com/Nulfrog/skills/blob/main/skills/engineering/decision-review/SKILL.md) follows it too, so an agent that edits an ADR by hand, one working through `domain-modeling`, and one fixing it through a review all do the same thing.
 
-It also separates issue state from provenance. [to-spec](https://aihero.dev/skills-to-spec) applies both `ready-for-agent` and `spec`; [to-tickets](https://aihero.dev/skills-to-tickets) applies only `ready-for-agent`, so `spec` means “source specification” rather than another triage state.
+It also separates issue state from provenance. [to-spec](https://aihero.dev/skills-to-spec) applies both `ready-for-agent` and `spec`; [to-tickets](https://aihero.dev/skills-to-tickets) applies only `ready-for-agent`, so `spec` means “source specification” rather than another triage state. On GitHub or GitLab it creates the `spec` label if the tracker lacks it, because `to-spec` only applies the label and never creates one.
 
 ## It's working if
 
 - One of `AGENTS.md` and `CLAUDE.md` holds the content and the other points at it: `AGENTS.md` by default, or the inherited direction in a fork that tracks an upstream.
 - `AGENTS.md` holds the concise-communication rule text itself, not a pointer to the rule file, and the Cursor rule and the Claude hook carry the same text. The hook prints static text and needs no runtime such as Node.js.
 - `AGENTS.md` tells agents, under **Domain docs**, to overwrite an ADR in place, not to amend it or supersede it with a new one, and to list the replaced choice under Considered Options.
-- The tracker documents `spec` separately from triage states.
+- The tracker documents `spec` separately from triage states, and on GitHub or GitLab the label exists on the tracker.
 
 ## Where it fits
 
