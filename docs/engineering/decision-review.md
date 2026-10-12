@@ -1,18 +1,18 @@
 ## What it does
 
-`decision-review` takes the decisions a [session](https://www.aihero.dev/ai-coding-dictionary/session) just changed (a new ADR, a changed one, a resolved glossary term) and reviews them along two axes: **Coherence**, whether the change agrees with the ADRs and `CONTEXT.md` already in the repo, and **Conformance**, where the codebase diverges from the decision as now written. Each axis runs as its own [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent), and the two reports come back separately.
+`decision-review` takes the decisions a [session](https://www.aihero.dev/ai-coding-dictionary/session) just changed (a new ADR, a changed one, a resolved glossary term) and reviews them along two axes: **Coherence**, whether the change agrees with the ADRs and `GLOSSARY.md` already in the repo, and **Conformance**, where the codebase diverges from the decision as now written. Each axis runs as its own [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent), and the two reports come back separately.
 
 It fixes what it finds rather than handing you a list: the glossary and ADR edits, and the code that has mechanically drifted from them. Where a divergence is behavioural rather than mechanical it stops and specifies the work instead, on the grounds that an ADR is not a [spec](https://www.aihero.dev/ai-coding-dictionary/spec).
 
 ## When to reach for it
 
-Type `/decision-review`, or the agent reaches for it automatically at the end of a grilling session that wrote to `CONTEXT.md` or `docs/adr/`, since [grill-with-docs](https://aihero.dev/skills-grill-with-docs) closes out by invoking it.
+Type `/decision-review`, or the agent reaches for it automatically at the end of a grilling session that wrote to `GLOSSARY.md` or `docs/adr/`, since [grill-with-docs](https://aihero.dev/skills-grill-with-docs) closes out by invoking it.
 
 Reach for it by hand whenever a decision has just moved and you want to know what it breaks, including on an ADR you edited without a grilling session. For reviewing code a session wrote rather than decisions it made, use [code-review](https://aihero.dev/skills-code-review) instead; the two are counterparts and the axes do not overlap.
 
 ## Prerequisites
 
-It reviews a decision change, so there has to be one: the diff of `CONTEXT.md`, `docs/adr/`, and any per-context copies a root `CONTEXT-MAP.md` names. When that diff is empty the skill says so and stops. It needs no setup of its own, though it edits code and so wants a typecheck and test command it can run, and it reaches for a tracker only when a behavioural divergence has to become a spec.
+It reviews a decision change, so there has to be one: the diff of `GLOSSARY.md`, `docs/adr/`, and any per-context copies a root `GLOSSARY-MAP.md` names. When that diff is empty the skill says so and stops. It needs no setup of its own, though it edits code and so wants a typecheck and test command it can run, and it reaches for a tracker only when a behavioural divergence has to become a spec.
 
 ## The two axes, and why they are separate
 
@@ -20,7 +20,7 @@ The axes ask different questions of different material, and answering one tells 
 
 | Axis | Question | Material |
 | --- | --- | --- |
-| Coherence | Does the change agree with what the repo already decided? | The other ADRs, and `CONTEXT.md` |
+| Coherence | Does the change agree with what the repo already decided? | The other ADRs, and `GLOSSARY.md` |
 | Conformance | Where does reality diverge from the change? | The codebase |
 
 A decision can sit perfectly inside the existing ADR set while the code has never once behaved that way, and it can describe the code exactly while quietly contradicting a decision made a year ago. Reporting them together lets one hide the other, which is the same reason [code-review](https://aihero.dev/skills-code-review) keeps Standards and Spec apart.

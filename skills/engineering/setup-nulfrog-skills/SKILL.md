@@ -48,7 +48,7 @@ Wire up the concise-communication convention in three places. If any piece alrea
 ```markdown
 ## Communication style
 
-Talk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `CONTEXT.md`. Apply this to every reply, for the whole session.
+Talk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `GLOSSARY.md`. Apply this to every reply, for the whole session.
 ```
 
 Write the text, not a pointer to the rule file. A line such as "Follow `.cursor/rules/concise-communication.mdc`" loads nothing: an agent sees the rule only if it decides to open that file. Codex reads `AGENTS.md` as plain text and never opens `.cursor/`, and the Claude hook in step 3 does not fire for subagents. Inline text reaches Claude, Codex, Cursor, and subagents that load project instructions at session start, and Claude re-reads it after compaction.
@@ -67,7 +67,7 @@ If the section already exists and holds only that pointer line (the form earlier
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Talk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `CONTEXT.md`. Apply this to every reply, for the whole session.'"
+            "command": "echo 'Talk in ASD-STE100 Simplified Technical English, and use the ubiquitous language from `GLOSSARY.md`. Apply this to every reply, for the whole session.'"
           }
         ]
       }

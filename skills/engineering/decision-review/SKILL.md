@@ -1,11 +1,11 @@
 ---
 name: decision-review
-description: "Two-axis review of a decision a session just changed: Coherence (does it agree with the ADRs and CONTEXT.md already in the repo?) and Conformance (where does the codebase diverge from it?). Fixes the docs and the code that mechanically drifted from them, and specifies the rest. Use after a session writes or changes an ADR or CONTEXT.md, when the user asks what a decision breaks, or before acting on a decision that has just moved."
+description: "Two-axis review of a decision a session just changed: Coherence (does it agree with the ADRs and GLOSSARY.md already in the repo?) and Conformance (where does the codebase diverge from it?). Fixes the docs and the code that mechanically drifted from them, and specifies the rest. Use after a session writes or changes an ADR or GLOSSARY.md, when the user asks what a decision breaks, or before acting on a decision that has just moved."
 ---
 
 Two-axis review of the **decisions** a session just changed, the counterpart to `code-review`, which reviews the code a session just wrote:
 
-- **Coherence**: does the changed decision agree with the ADRs and `CONTEXT.md` already in the repo?
+- **Coherence**: does the changed decision agree with the ADRs and `GLOSSARY.md` already in the repo?
 - **Conformance**: where does the codebase diverge from the decision as now written?
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
@@ -16,7 +16,7 @@ The review fixes what it finds. See [Fixing](#fixing).
 
 ### 1. Pin the decision change
 
-The **decision surface** is `CONTEXT.md`, `docs/adr/`, and the per-context copies of both that a root `CONTEXT-MAP.md` names. Diff it against the state before the session: uncommitted changes by default (`git diff HEAD -- <decision surface>`), or the fixed point the user supplies if the session already committed.
+The **decision surface** is `GLOSSARY.md`, `docs/adr/`, and the per-context copies of both that a root `GLOSSARY-MAP.md` names. Diff it against the state before the session: uncommitted changes by default (`git diff HEAD -- <decision surface>`), or the fixed point the user supplies if the session already committed.
 
 Read every changed ADR **in full**, not just its hunks: both axes review the decision, and a diff shows only the words that moved.
 
@@ -24,15 +24,15 @@ Where that diff is empty, say so and stop. There is no decision to review.
 
 ### 2. Name the terms in play
 
-List the domain terms the changed decision turns on, taking them from the ADR body and from `CONTEXT.md`. This is the Conformance sub-agent's search surface: it is what keeps the axis pointed at the blast radius instead of the whole codebase.
+List the domain terms the changed decision turns on, taking them from the ADR body and from `GLOSSARY.md`. This is the Conformance sub-agent's search surface: it is what keeps the axis pointed at the blast radius instead of the whole codebase.
 
 ### 3. Spawn both sub-agents in parallel
 
 Send a single message with two `Agent` tool calls. Use the `general-purpose` subagent for both.
 
-**Coherence sub-agent prompt**: include the full text of every changed decision, the path and title of every *other* ADR, and `CONTEXT.md`. The brief:
+**Coherence sub-agent prompt**: include the full text of every changed decision, the path and title of every *other* ADR, and `GLOSSARY.md`. The brief:
 
-> "Report: (a) every existing ADR the changed decision contradicts, quoting both sides; (b) every existing ADR that records the same decision, or an earlier version of it, naming which file should hold the decision; (c) every `CONTEXT.md` term the change has made wrong, and every term the change relies on that the glossary does not define. Cite file and line for each side of every finding. Under 400 words."
+> "Report: (a) every existing ADR the changed decision contradicts, quoting both sides; (b) every existing ADR that records the same decision, or an earlier version of it, naming which file should hold the decision; (c) every `GLOSSARY.md` term the change has made wrong, and every term the change relies on that the glossary does not define. Cite file and line for each side of every finding. Under 400 words."
 
 **Conformance sub-agent prompt**: include the full text of every changed decision and the terms from step 2. The brief:
 

@@ -6,7 +6,7 @@ Add `/decision-review`, and close every `/grill-with-docs` session out with it.
 
 A grilling session that writes an ADR leaves two questions unanswered: does the new decision still agree with the decisions already in the repo, and does the code? Running `/code-review` afterwards nearly works, since the parallel sub-agent exploration is the useful part, but its axes are aimed at a code diff, so **Standards** has nothing to bite on when the diff is Markdown and **Spec** has no originating issue to check against.
 
-`/decision-review` keeps the mechanism and replaces the brief. It diffs the **decision surface** (`CONTEXT.md`, `docs/adr/`, and the per-context copies a `CONTEXT-MAP.md` names) then runs two axes as parallel sub-agents: **Coherence**, whether the change contradicts, duplicates, or silently supersedes an existing ADR or invalidates a glossary term, and **Conformance**, where the codebase diverges from the decision as now written, searched outward from the terms the decision turns on.
+`/decision-review` keeps the mechanism and replaces the brief. It diffs the **decision surface** (`GLOSSARY.md`, `docs/adr/`, and the per-context copies a `GLOSSARY-MAP.md` names) then runs two axes as parallel sub-agents: **Coherence**, whether the change contradicts, duplicates, or silently supersedes an existing ADR or invalidates a glossary term, and **Conformance**, where the codebase diverges from the decision as now written, searched outward from the terms the decision turns on.
 
 It then **fixes what it finds**, coherence first, through `domain-modeling`, which owns the glossary and ADR formats, since a coherence fix changes what conforming even means. Conformance fixes follow, and typechecking and the test suite run once the code edits are in.
 
