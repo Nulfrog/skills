@@ -10,8 +10,9 @@
   "license": "MIT",
   "scripts": {
     "changeset": "changeset",
-    "version": "changeset version && node scripts/sync-plugin-version.mjs",
-    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check"
+    "version": "node scripts/adopt-upstream-changesets.mjs && changeset version && node scripts/sync-plugin-version.mjs",
+    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
+    "check-changesets": "node scripts/adopt-upstream-changesets.mjs --check"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",
