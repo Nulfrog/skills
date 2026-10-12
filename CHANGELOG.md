@@ -1,5 +1,99 @@
 # mattpocock-skills
 
+## 1.4.0
+
+### Minor Changes
+
+- [`7d3f474`](https://github.com/Nulfrog/skills/commit/7d3f47414c3551eee39d096f64b5d6f45eb26945) Thanks [@Nulfrog](https://github.com/Nulfrog)! - `domain-modeling` now rewrites a changed decision in its existing ADR, even one already implemented, instead of superseding it. The old choice moves under **Considered Options** with why it was dropped, the number stays, and git history keeps the earlier text. A withdrawn decision's ADR records the reversal if the reversal clears the ADR tests, and is deleted otherwise. The `deprecated` and `superseded by` statuses are gone.
+
+  This moves the overwrite rule into the ADR format itself. The `AGENTS.md` rule that `/setup-nulfrog-skills` writes and `/decision-review`'s hand-off no longer need to override a supersede rule, so both drop that clause. `ADR-FORMAT.md` already diverged from upstream in this section, and the Status line is a new small divergence.
+
+- [`ec93402`](https://github.com/Nulfrog/skills/commit/ec934025c1e5b4e0e35fcf8d01fc2263ee022185) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Overwrite an outdated ADR in place, in `/decision-review` and in the `AGENTS.md` that `/setup-nulfrog-skills` writes.
+
+  `/decision-review` handed its coherence fixes to `domain-modeling`, whose ADR format supersedes an ADR that was acted on. That leaves two documents that disagree, and a reader has to follow the status line to learn which one is in force. `/decision-review` now tells `domain-modeling` to rewrite the outdated ADR so it states the decision now in force, with no amendment note, no `superseded by` status, and no new ADR beside it. Where the session already wrote a new ADR for a decision an existing ADR records, the review folds it into the existing ADR and deletes the new file. The replaced choice moves into the ADR's **Considered Options** with why it was dropped, so the current ADR still warns against it. Git history holds the old text.
+
+  `/setup-nulfrog-skills` writes the same rule into `AGENTS.md`, under **Domain docs**, so an agent that edits an ADR by hand follows it too:
+
+  > ADRs record only the decisions in force: one file per decision, always current. When a decision changes, including one already implemented, rewrite that same file to the new decision. Every rewrite adds the old choice under a Considered Options heading, with why it was dropped. Git history keeps the earlier text.
+
+- [`f81e4a8`](https://github.com/Nulfrog/skills/commit/f81e4a804ddf9a655c108fcf13236d2bc96beb78) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Add `/decision-review`, and close every `/grill-with-docs` session out with it.
+
+  A grilling session that writes an ADR leaves two questions unanswered: does the new decision still agree with the decisions already in the repo, and does the code? Running `/code-review` afterwards nearly works, since the parallel sub-agent exploration is the useful part, but its axes are aimed at a code diff, so **Standards** has nothing to bite on when the diff is Markdown and **Spec** has no originating issue to check against.
+
+  `/decision-review` keeps the mechanism and replaces the brief. It diffs the **decision surface** (`GLOSSARY.md`, `docs/adr/`, and the per-context copies a `GLOSSARY-MAP.md` names) then runs two axes as parallel sub-agents: **Coherence**, whether the change contradicts, duplicates, or silently supersedes an existing ADR or invalidates a glossary term, and **Conformance**, where the codebase diverges from the decision as now written, searched outward from the terms the decision turns on.
+
+  It then **fixes what it finds**, coherence first, through `domain-modeling`, which owns the glossary and ADR formats, since a coherence fix changes what conforming even means. Conformance fixes follow, and typechecking and the test suite run once the code edits are in.
+
+  Conformance findings split by the **kind** of fix rather than its size, since a rename across fifty files is mechanical while a three-line change to what a function returns is a design act. **Mechanical** divergence, such as a renamed concept the code still carries under the old word or a constant that no longer matches, is fixed however far it reaches: one right answer, verifiable by reading it, which matters because the conformance report came from a read-only pass over prose. **Behavioural** divergence is specified rather than fixed, because an ADR is not a spec: it constrains the outcome without fixing the mechanism, so _make the code conform_ admits several implementations, and choosing between them is the deliberate design work the grill just did.
+
+  The skill **publishes nothing itself**. Behavioural findings are held until both axes are in and folded into **one** brief, since they descend from a common decision that a pile of sibling issues would obscure, and that brief is handed to the user to run `/to-spec` on. It has to be: `to-spec` is user-invoked, so no skill can reach it. `/to-tickets` stays the user's call too, so a planning session can't quietly decompose itself into a backlog.
+
+  Where the divergent code looks **deliberate**, because a test asserts it, a comment defends it, or another ADR exempts it, neither happens. The decision is the likelier mistake, and working code contradicting a minutes-old ADR is the strongest evidence available that the grill missed a case, so the session reopens the interview rather than filing work against it.
+
+  `ADR-FORMAT.md` also regains the rule the coherence fix depends on: supersede an ADR that was acted on, so the breadcrumb explains the implementation, and overwrite one that never was.
+
+- [`1df161d`](https://github.com/Nulfrog/skills/commit/1df161d121c17d8bb5131a3e9f9a7491900aa1c1) Thanks [@Nulfrog](https://github.com/Nulfrog)! - `wayfinder` now calls `decision-review` before closing a ticket that changed `GLOSSARY.md` or wrote or rewrote an ADR. Before, only `grill-with-docs` triggered the review, so a decision made on a wayfinder ticket was never checked. Inside a map, `decision-review` fixes the docs but edits no code, because the map plans rather than does and other sessions may be working its tickets in parallel. It lists mechanical drift in the ticket's resolution comment and adds each behavioural divergence to the map as a ticket or under **Not yet specified**, instead of writing a brief for `/to-spec`.
+
+### Patch Changes
+
+- [#1194](https://github.com/mattpocock/skills/pull/1194) [`b645f47`](https://github.com/Nulfrog/skills/commit/b645f47de3e17ed3bf60586c9bebb8092e0f79fd) Thanks [@mattpocock](https://github.com/mattpocock)! - `ask-matt` now reads a skill's `SKILL.md` before stating what it does or recommending a step be skipped, instead of trusting its own one-line summaries ([#614](https://github.com/Nulfrog/skills/issues/614)).
+
+- [#1208](https://github.com/mattpocock/skills/pull/1208) [`3da8c01`](https://github.com/Nulfrog/skills/commit/3da8c01116264675eeefbd6e9d59c734de9095cc) Thanks [@mattpocock](https://github.com/mattpocock)! - `code-review` now searches the repo for standards files and always hands `CODING_STANDARDS.md` / `CONTRIBUTING.md` to the Standards sub-agent ([#1065](https://github.com/Nulfrog/skills/issues/1065)), runs both sub-agents in the foreground and uses their returned reports ([#1073](https://github.com/Nulfrog/skills/issues/1073)), and resolves the issue tracker through the provided tracker doc instead of a hard-coded path ([#937](https://github.com/Nulfrog/skills/issues/937)).
+
+- [`d6d503b`](https://github.com/Nulfrog/skills/commit/d6d503b85f3a400241784abcc2844e01e2819364) Thanks [@Nulfrog](https://github.com/Nulfrog)! - `decision-review` now runs its Coherence and Conformance sub-agents together in the foreground and aggregates the reports they return, matching `code-review`. It no longer names a Claude-only tool or subagent type, so it reads the same on every harness.
+
+- [#1209](https://github.com/mattpocock/skills/pull/1209) [`f3fc563`](https://github.com/Nulfrog/skills/commit/f3fc5632f401156837ee3872f14fe33ccf1024ea) Thanks [@mattpocock](https://github.com/mattpocock)! - `diagnosing-bugs` Phase 5 now has the agent `diff` a forced mutation against a pristine copy before trusting the red, so an edit that silently changed nothing can't pass as a failing test ([#955](https://github.com/Nulfrog/skills/issues/955)).
+
+- [#1187](https://github.com/mattpocock/skills/pull/1187) [`e0efb6e`](https://github.com/Nulfrog/skills/commit/e0efb6e7435ebb420d8a25d6816ed1ebaa2d23d2) Thanks [@mattpocock](https://github.com/mattpocock)! - Fixed the GitHub tracker template's external-PR listing, which failed on `authorAssociation` ([#468](https://github.com/Nulfrog/skills/issues/468), thanks @lofi-coding). Re-run `/setup-matt-pocock-skills` to refresh `docs/agents/issue-tracker.md`.
+
+- [#1193](https://github.com/mattpocock/skills/pull/1193) [`95249b0`](https://github.com/Nulfrog/skills/commit/95249b0b49782349740fd9b8c6ce32b4e59e497a) Thanks [@mattpocock](https://github.com/mattpocock)! - `grilling` words each question so "yes" accepts the recommended answer, so agreeing never means answering "no" ([#706](https://github.com/Nulfrog/skills/issues/706)).
+
+- [#1184](https://github.com/mattpocock/skills/pull/1184) [`4f4e943`](https://github.com/Nulfrog/skills/commit/4f4e9433bbb7c4957ef33b1ea26686fb7c2a4cf4) Thanks [@mattpocock](https://github.com/mattpocock)! - `handoff` now names where the OS temp directory is (`$TMPDIR`, else `/tmp`; `%TEMP%` on Windows), so agents stop guessing ([#272](https://github.com/Nulfrog/skills/issues/272)).
+
+- [#1189](https://github.com/mattpocock/skills/pull/1189) [`e48341a`](https://github.com/Nulfrog/skills/commit/e48341a3d412cfeba4b9a79d3fd0331fc376ba82) Thanks [@mattpocock](https://github.com/mattpocock)! - `implement` now calls the Skill tool for `tdd` and `code-review` instead of bare `/skill` prose, matching [#878](https://github.com/Nulfrog/skills/issues/878).
+
+- [#1196](https://github.com/mattpocock/skills/pull/1196) [`6d6a5b9`](https://github.com/Nulfrog/skills/commit/6d6a5b9072f47ee7ba1d972d8ce0ee98b7ed4394) Thanks [@mattpocock](https://github.com/mattpocock)! - `implement` fetches a passed ticket reference from the issue tracker and states its title before starting, asking when the reference is ambiguous ([#700](https://github.com/Nulfrog/skills/issues/700)).
+
+- [`bc92b7a`](https://github.com/Nulfrog/skills/commit/bc92b7ad5ea6fa380e0045d0955e59ebfe19a055) Thanks [@Nulfrog](https://github.com/Nulfrog)! - `setup-nulfrog-skills` now creates the `spec` label on GitHub or GitLab when the tracker lacks it, as `setup-matt-pocock-skills` does for the triage labels. Before, `/to-spec` failed to publish on a fresh tracker because it applies the label but never creates it. Re-run `/setup-nulfrog-skills` to create it.
+
+- [`f81e4a8`](https://github.com/Nulfrog/skills/commit/f81e4a804ddf9a655c108fcf13236d2bc96beb78) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Let `/setup-nulfrog-skills` leave a fork's inherited `CLAUDE.md` direction alone.
+
+  The overlay made `AGENTS.md` canonical unconditionally, which is the wrong move in a repo that tracks an upstream keeping its instructions in `CLAUDE.md`. Both arrangements land every agent on a single source, so inverting the direction wins nothing but consistency, and it moves the fork's divergence onto the file upstream edits most, so every sync conflicts. The write step now names that exception and asks for the direction it found and why it kept it.
+
+- [`08178f2`](https://github.com/Nulfrog/skills/commit/08178f23df8396b1a473c0740b6c7594fa601112) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Make `/setup-nulfrog-skills` write the communication rule as text, in `AGENTS.md` and in the Claude hook.
+
+  The `## Communication style` section used to say "Follow `.cursor/rules/concise-communication.mdc`." A pointer loads nothing: an agent sees the rule only if it decides to open the file. Codex never opens `.cursor/`, and the Claude hook does not fire for subagents, so both saw the pointer and not the rule. The section now holds the rule sentence, and a re-run replaces the old pointer line.
+
+  The Claude `UserPromptSubmit` hook used to run `node` to read the `.mdc` rule. On a machine without Node it failed with only a small notice, and when the file was missing it printed nothing at all. The hook now uses `echo` to print the rule as static text, which works in Git Bash, PowerShell, macOS, and Linux with no runtime. A re-run replaces the old `node` hook.
+
+- [`34c5fa7`](https://github.com/Nulfrog/skills/commit/34c5fa7a5a2d64a3a5a0dbc5865c512e01e202ac) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Quote the `description` front matter in `setup-nulfrog-skills`. The em-dash sweep left an unquoted colon-space after `setup-matt-pocock-skills`, which made the block invalid YAML. `npx skills` skipped the skill during discovery, so `skills add` did not list it or update it.
+
+- [#1197](https://github.com/mattpocock/skills/pull/1197) [`5b7cade`](https://github.com/Nulfrog/skills/commit/5b7cade4d68947f34dae71326a0ce89f09e22c9c) Thanks [@mattpocock](https://github.com/mattpocock)! - `setup-matt-pocock-skills` now creates missing triage labels on GitHub/GitLab ([#616](https://github.com/Nulfrog/skills/issues/616)), fixes the GitLab template's `glab` commands ([#635](https://github.com/Nulfrog/skills/issues/635)), reads GitHub issues with `--json` so labels and body come through ([#733](https://github.com/Nulfrog/skills/issues/733)), and names the "Label in our tracker" column in `triage-labels.md` ([#801](https://github.com/Nulfrog/skills/issues/801)). Re-run `/setup-matt-pocock-skills` to refresh `docs/agents/`.
+
+- [#1192](https://github.com/mattpocock/skills/pull/1192) [`3f59913`](https://github.com/Nulfrog/skills/commit/3f599139104dfceabc7754eeb91319802f85e042) Thanks [@mattpocock](https://github.com/mattpocock)! - `tdd` now gives each proposed seam a one-line note on what it catches and what it misses, so choosing between seams is no longer a guess ([#607](https://github.com/Nulfrog/skills/issues/607)).
+
+- [#1183](https://github.com/mattpocock/skills/pull/1183) [`ad5400b`](https://github.com/Nulfrog/skills/commit/ad5400b930b297b0c0cb231ff1ffe42a7da666aa) Thanks [@mattpocock](https://github.com/mattpocock)! - `teach` quizzes vary which position holds the correct answer ([#611](https://github.com/Nulfrog/skills/issues/611)).
+
+- [#1183](https://github.com/mattpocock/skills/pull/1183) [`ad5400b`](https://github.com/Nulfrog/skills/commit/ad5400b930b297b0c0cb231ff1ffe42a7da666aa) Thanks [@mattpocock](https://github.com/mattpocock)! - `teach` writes its workspace to the directory you ran it in, not the skill folder ([#377](https://github.com/Nulfrog/skills/issues/377)).
+
+- [`f81e4a8`](https://github.com/Nulfrog/skills/commit/f81e4a804ddf9a655c108fcf13236d2bc96beb78) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Make `/to-spec`'s `spec` provenance label optional.
+
+  The step that applies `spec` alongside `ready-for-agent` read as unconditional, so in a repo that ran only `/setup-matt-pocock-skills` the agent would reach for a label the tracker has never heard of and, on a real tracker, could create it. The label is now explicitly the one `/setup-nulfrog-skills` configures: where it is missing, the spec publishes under `ready-for-agent` alone and the skill says so rather than inventing it.
+
+- [#1188](https://github.com/mattpocock/skills/pull/1188) [`cffab50`](https://github.com/Nulfrog/skills/commit/cffab50350e3d96688f63f890f4d7ca0e6007cfe) Thanks [@mattpocock](https://github.com/mattpocock)! - `to-tickets` makes each ticket a sub-issue of its source issue (the GitHub tracker template now gives the command), and omits `## Blocked by` when blockers are native edges. Re-run `/setup-matt-pocock-skills` to refresh `docs/agents/issue-tracker.md`. Thanks @richardwhatever ([#554](https://github.com/Nulfrog/skills/issues/554)) and @adamslowe ([#262](https://github.com/Nulfrog/skills/issues/262)).
+
+- [`f81e4a8`](https://github.com/Nulfrog/skills/commit/f81e4a804ddf9a655c108fcf13236d2bc96beb78) Thanks [@Nulfrog](https://github.com/Nulfrog)! - Open every HITL `/wayfinder` ticket with a short **briefing**, then start the work immediately.
+
+  Working through a map, the agent claimed the next frontier ticket and went straight to its first question. But by the time the frontier reaches a ticket, the human has usually lost the backstory the question depends on, and can't answer it well. A new step now briefs them first: the scene in the effort's own domain language, before any tracker reference, then the question the ticket asks and what it rests on.
+
+  The briefing is capped at **one or two short paragraphs of prose**, with no headings, tables, or evidence dumps, and nothing about what closing the ticket unblocks, because a briefing long enough to need its own table of contents doesn't get read, and everything the agent read to prepare is better spent answering a question than pre-empting one. It also **doesn't wait for a reply**: it runs into resolving the ticket in the same message, so a `grilling` ticket's first round of questions follows it directly and the exchange costs no extra turn.
+
+- [#1181](https://github.com/mattpocock/skills/pull/1181) [`8295b8e`](https://github.com/Nulfrog/skills/commit/8295b8e10d4cdb6cce772a56dda7b7c37075074d) Thanks [@mattpocock](https://github.com/mattpocock)! - `wayfinder` no longer labels maps or tickets `ready-for-agent` ([#518](https://github.com/Nulfrog/skills/issues/518)), writes cross-references only with real issue ids ([#507](https://github.com/Nulfrog/skills/issues/507)), opens no PR from research branches ([#576](https://github.com/Nulfrog/skills/issues/576)), and resolves each ticket as the type its label names ([#625](https://github.com/Nulfrog/skills/issues/625)). Thanks @jcwayne, @baob, @rynz and @sponge-b0b.
+
+- [#1237](https://github.com/mattpocock/skills/pull/1237) [`49dd158`](https://github.com/Nulfrog/skills/commit/49dd158d1076134a641b33efb035946536778336) Thanks [@mattpocock](https://github.com/mattpocock)! - `wizard` template fixes: `_existing` decodes a double-quoted `.env` value, so Enter-keeps-current no longer stores the quotes ([#1220](https://github.com/Nulfrog/skills/issues/1220)); stages run inside `run_wizard`, so editing the script mid-run can't kill it ([#1142](https://github.com/Nulfrog/skills/issues/1142)); `_clear` falls back to ANSI when `tput clear` fails ([#1081](https://github.com/Nulfrog/skills/issues/1081)); `write_env` sets the shell variable too ([#1041](https://github.com/Nulfrog/skills/issues/1041)); drop the unused `RED` ([#1003](https://github.com/Nulfrog/skills/issues/1003)).
+
+- [#1198](https://github.com/mattpocock/skills/pull/1198) [`868c4cf`](https://github.com/Nulfrog/skills/commit/868c4cf20cb7e08bc805c388ff1f305dbedd261a) Thanks [@mattpocock](https://github.com/mattpocock)! - `wizard` template fixes: `ask` uses Readline so arrow keys move the cursor ([#741](https://github.com/Nulfrog/skills/issues/741)); `write_env` single-quotes values so spaces, `#`, `$` and quotes survive `source` and dotenv ([#770](https://github.com/Nulfrog/skills/issues/770)); `open_url` prints the open-it-yourself warning when no browser opener exists ([#774](https://github.com/Nulfrog/skills/issues/774)); `write_env` writes through a symlinked `.env` and keeps an existing file's mode ([#811](https://github.com/Nulfrog/skills/issues/811)); `ask` and `ask_secret` fail at EOF instead of looping ([#852](https://github.com/Nulfrog/skills/issues/852)).
+
 ## 1.3.1
 
 ### Patch Changes
