@@ -28,7 +28,7 @@ List the domain terms the changed decision turns on, taking them from the ADR bo
 
 ### 3. Spawn both sub-agents in parallel
 
-Send a single message with two `Agent` tool calls. Use the `general-purpose` subagent for both.
+Issue both sub-agent calls together, in the foreground, and aggregate the reports they return.
 
 **Coherence sub-agent prompt**: include the full text of every changed decision, the path and title of every *other* ADR, and `GLOSSARY.md`. The brief:
 
