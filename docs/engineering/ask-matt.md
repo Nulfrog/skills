@@ -34,7 +34,7 @@ The skill's leading word is **flow**, a path *through* the skills rather than a 
 
 ## Nulfrog additions
 
-A grilling session that writes an ADR or resolves a glossary term closes out with [decision-review](https://github.com/Nulfrog/skills/blob/main/skills/engineering/decision-review/SKILL.md), which checks the changed decision against the ADRs already in the repo and against the code. It is the planning half's counterpart to [code-review](https://aihero.dev/skills-code-review), and it sits between [grill-with-docs](https://aihero.dev/skills-grill-with-docs) and [to-spec](https://aihero.dev/skills-to-spec) on the main flow.
+A grilling session, or a [wayfinder](https://aihero.dev/skills-wayfinder) ticket, that writes an ADR or resolves a glossary term closes out with [decision-review](https://github.com/Nulfrog/skills/blob/main/skills/engineering/decision-review/SKILL.md), which checks the changed decision against the ADRs already in the repo and against the code. It is the planning half's counterpart to [code-review](https://aihero.dev/skills-code-review), and it sits between [grill-with-docs](https://aihero.dev/skills-grill-with-docs) and [to-spec](https://aihero.dev/skills-to-spec) on the main flow.
 
 For repository setup, run [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills), then [setup-nulfrog-skills](https://github.com/Nulfrog/skills/blob/main/skills/engineering/setup-nulfrog-skills/SKILL.md) to make `AGENTS.md` canonical, wire concise communication, and configure `spec` provenance.
 

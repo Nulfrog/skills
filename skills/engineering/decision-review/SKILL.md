@@ -62,10 +62,12 @@ Then stop, and tell the user to run `/to-spec` on that brief. This skill cannot 
 
 Trust the sub-agent's findings less on this axis than on coherence. It was a read-only pass over prose, and a mechanical fix can be checked by eye where a behavioural one cannot. Once the code edits are in, run typechecking and the full test suite: a fix that reddens the build has traded one divergence for another.
 
+**Inside a wayfinder map.** When the session is resolving a ticket on a wayfinder map, edit no code: the map plans rather than does, and other sessions may be working its tickets in parallel. Fix coherence findings as above. Deliberate-looking divergence still reopens the decision, inside the same ticket. Every other conformance finding goes on the map instead of being fixed or briefed: list each mechanical divergence in the ticket's resolution comment, so the destination spec reaches it through Decisions so far, and add each behavioural divergence the way the map takes any newly surfaced question, as a ticket where it is sharp and under **Not yet specified** where it is not. Write no brief and skip the typecheck and test run, since no code changed.
+
 ## Done when
 
 - Every changed decision was read in full, and both axes ran against it.
-- Every coherence finding and every mechanical divergence is fixed.
+- Every coherence finding and every mechanical divergence is fixed, or, inside a wayfinder map, every mechanical divergence is listed in the ticket's resolution comment.
 - Each changed decision lives in one ADR that states it as now in force, with the choice it replaced under **Considered Options**.
-- Every behavioural divergence left the session as an ADR overwritten in place, a recorded exemption, or part of the one brief handed to the user for `/to-spec`.
-- Typechecking and the test suite pass.
+- Every behavioural divergence left the session as an ADR overwritten in place, a recorded exemption, or part of the one brief handed to the user for `/to-spec`, or, inside a wayfinder map, as a ticket or a **Not yet specified** entry on the map.
+- Typechecking and the test suite pass, wherever code was edited.

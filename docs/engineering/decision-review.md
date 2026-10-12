@@ -6,7 +6,7 @@ It fixes what it finds rather than handing you a list: the glossary and ADR edit
 
 ## When to reach for it
 
-Type `/decision-review`, or the agent reaches for it automatically at the end of a grilling session that wrote to `GLOSSARY.md` or `docs/adr/`, since [grill-with-docs](https://aihero.dev/skills-grill-with-docs) closes out by invoking it.
+Type `/decision-review`, or the agent reaches for it automatically at the end of a grilling session that wrote to `GLOSSARY.md` or `docs/adr/`, since [grill-with-docs](https://aihero.dev/skills-grill-with-docs) closes out by invoking it. A [wayfinder](https://aihero.dev/skills-wayfinder) ticket that changes an ADR or the glossary invokes it the same way, before the ticket closes.
 
 Reach for it by hand whenever a decision has just moved and you want to know what it breaks, including on an ADR you edited without a grilling session. For reviewing code a session wrote rather than decisions it made, use [code-review](https://aihero.dev/skills-code-review) instead; the two are counterparts and the axes do not overlap.
 
@@ -48,6 +48,8 @@ Behavioural divergence is specified instead. An ADR constrains the outcome witho
 
 Two behavioural findings deserve better than a ticket, and the tell for both is that the divergent code looks *intended*: a test asserts the current behaviour, a comment defends it, or another ADR exempts it. Either the decision is wrong, in which case working code contradicting a fresh ADR is the strongest evidence available that the grill missed a case, and you reopen the interview instead of filing work against it; or it is a real exemption, and it belongs in the ADR so the next run stops finding it.
 
+Inside a wayfinder map, it fixes the docs and nothing else. The map is for planning, and other sessions may be working its tickets at the same time, so code edits there would be work done mid-plan, possibly twice. Mechanical drift is listed in the ticket's resolution comment instead, where the destination spec picks it up, and each behavioural divergence joins the map as a ticket or under **Not yet specified**. No brief is written.
+
 ## Common questions
 
 **Why not just run `/code-review` after a grilling session?**
@@ -67,6 +69,7 @@ No, and it is the common result for a small decision. An empty Conformance repor
 - The two reports arrive under separate headings, and neither is ranked against the other.
 - Every conformance finding quotes a file and line on one side and a clause of the decision on the other.
 - The docs fixes and the mechanical code fixes land in the session, and the test suite is green before it hands back.
+- Inside a wayfinder map, no code changes: the drift sits in the ticket's resolution comment, and the behavioural gaps sit on the map.
 - An ADR the change outdated reads as the current decision, with no amendment note and no superseding ADR, and names the choice it replaced under **Considered Options**.
 - Behavioural findings leave as one brief for you to publish, not as edits and not as a pile of issues, and one sometimes sends you back into the interview instead.
 - On a repo whose ADRs have drifted, the first run is noisy, reporting a backlog rather than a regression.
@@ -79,4 +82,4 @@ No, and it is the common result for a small decision. An empty Conformance repor
 grill-with-docs → decision-review → to-spec → to-tickets → implement → code-review
 ```
 
-Its neighbours are [grill-with-docs](https://aihero.dev/skills-grill-with-docs), which invokes it once a session has left a paper trail, and [domain-modeling](https://aihero.dev/skills-domain-modeling), which owns the glossary and ADR formats it applies its coherence fixes through. Any skill that leaves ADRs behind can reach it, including [wayfinder](https://aihero.dev/skills-wayfinder) and [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture). When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+Its neighbours are [grill-with-docs](https://aihero.dev/skills-grill-with-docs), which invokes it once a session has left a paper trail, and [domain-modeling](https://aihero.dev/skills-domain-modeling), which owns the glossary and ADR formats it applies its coherence fixes through. [wayfinder](https://aihero.dev/skills-wayfinder) invokes it after any ticket that changed an ADR or the glossary, in its docs-only mode. Any other skill that leaves ADRs behind can reach it too, including [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture). When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
