@@ -10,6 +10,8 @@ Every skill in `engineering/` or `productivity/` (the **promoted** buckets) must
 
 Install commands are copied verbatim from [.agents/install-block.md](./.agents/install-block.md). `.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace, `nulfrog`, and because this fork is not listed in Claude Code's official marketplace, every managed route installs from it, Claude Code included: users add it before they can install the plugin. Run `claude plugin validate . --strict` after touching either manifest. [ADR 0002](./.agents/adr/0002-ship-as-a-claude-code-plugin.md) records why.
 
+This fork cuts no releases of its own: its version is upstream's, taken at each upstream merge, in `package.json`, `.claude-plugin/plugin.json`, and `CHANGELOG.md`. Write no changesets for fork changes (the commit message records them), and leave upstream's changesets as upstream wrote them. The Release workflow is disabled in the fork's GitHub Actions settings. A fork that bumps its own version takes numbers upstream will also use, and edited changesets conflict on every sync.
+
 Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
 
 Each bucket folder has a `README.md` that lists every skill in the bucket with a one-line description, with the skill name linked to its `SKILL.md`. The promoted buckets' `README.md`s and the top-level `README.md` group entries into **User-invoked** and **Model-invoked**; non-promoted bucket `README.md`s (`misc/`, `in-progress/`) use a flat list.

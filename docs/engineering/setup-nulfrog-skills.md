@@ -24,12 +24,15 @@ It tells every agent to overwrite an ADR in place when a decision changes, with 
 
 It also separates issue state from provenance. [to-spec](https://aihero.dev/skills-to-spec) applies both `ready-for-agent` and `spec`; [to-tickets](https://aihero.dev/skills-to-tickets) applies only `ready-for-agent`, so `spec` means “source specification” rather than another triage state. On GitHub or GitLab it creates the `spec` label if the tracker lacks it, because `to-spec` only applies the label and never creates one.
 
+On GitHub it also widens the upstream tracker's "never file into `mattpocock/skills`" line to name `Nulfrog/skills`, so an agent working in a clone of this fork does not file your specs and tickets into it.
+
 ## It's working if
 
 - One of `AGENTS.md` and `CLAUDE.md` holds the content and the other points at it: `AGENTS.md` by default, or the inherited direction in a fork that tracks an upstream.
 - `AGENTS.md` holds the concise-communication rule text itself, not a pointer to the rule file, and the Cursor rule and the Claude hook carry the same text. The hook prints static text and needs no runtime such as Node.js.
 - `AGENTS.md` tells agents, under **Domain docs**, to overwrite an ADR in place, not to amend it or supersede it with a new one, and to list the replaced choice under Considered Options.
 - The tracker documents `spec` separately from triage states, and on GitHub or GitLab the label exists on the tracker.
+- On GitHub, `docs/agents/issue-tracker.md` forbids filing into both `mattpocock/skills` and `Nulfrog/skills`.
 
 ## Where it fits
 

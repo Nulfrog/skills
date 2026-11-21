@@ -10,9 +10,8 @@
   "license": "MIT",
   "scripts": {
     "changeset": "changeset",
-    "version": "node scripts/adopt-upstream-changesets.mjs && changeset version && node scripts/sync-plugin-version.mjs",
+    "version": "changeset version && node scripts/sync-plugin-version.mjs",
     "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
-    "check-changesets": "node scripts/adopt-upstream-changesets.mjs --check",
     "check-frontmatter": "node scripts/check-frontmatter.mjs"
   },
   "devDependencies": {

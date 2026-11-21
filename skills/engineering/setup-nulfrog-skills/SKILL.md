@@ -84,6 +84,16 @@ The command prints the rule as static text, so it has nothing to fail on. Three 
 - Single quotes make the text literal in bash and in PowerShell, so the backticks pass through unchanged. The rule text must not contain a single quote, because a quote ends the string in both shells.
 - It reads no file, so a moved or missing rule file cannot make it print nothing. An older version of this hook ran `node` to read the `.mdc` rule: it failed with only a small notice on a machine without Node, and it printed nothing when the file was missing.
 
+### Never file into the skills repos
+
+If the tracker is GitHub, find the base template's line in `docs/agents/issue-tracker.md` that says never to file into `mattpocock/skills`, and make it name this fork too:
+
+```markdown
+File issues only into the user's own repo. Never file into `mattpocock/skills` or `Nulfrog/skills` (the repos these skills come from) unless the user owns it.
+```
+
+Keep the rest of that paragraph as the base skill wrote it. The base template guards only the upstream repo, so an agent working in a clone of `Nulfrog/skills` could still file its specs and tickets into this fork. If the line already names `Nulfrog/skills`, leave it.
+
 ### ADRs are overwritten in place
 
 Ensure `AGENTS.md` holds this rule, at the end of the `### Domain docs` subsection that the base skill writes into the `## Agent skills` block:
