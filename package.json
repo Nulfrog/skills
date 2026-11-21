@@ -1,6 +1,6 @@
 {
   "name": "nulfrog-skills",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "private": true,
   "description": "Nulfrog's customized fork of Matt Pocock's agent skills for real engineering",
   "repository": {
@@ -12,11 +12,13 @@
     "changeset": "changeset",
     "version": "node scripts/adopt-upstream-changesets.mjs && changeset version && node scripts/sync-plugin-version.mjs",
     "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
-    "check-changesets": "node scripts/adopt-upstream-changesets.mjs --check"
+    "check-changesets": "node scripts/adopt-upstream-changesets.mjs --check",
+    "check-frontmatter": "node scripts/check-frontmatter.mjs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",
-    "@changesets/cli": "^2.30.0"
+    "@changesets/cli": "^2.30.0",
+    "yaml": "^2.9.1"
   },
   "packageManager": "npm@10.9.4"
 }

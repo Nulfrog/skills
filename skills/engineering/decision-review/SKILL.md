@@ -8,7 +8,7 @@ Two-axis review of the **decisions** a session just changed, the counterpart to 
 - **Coherence**: does the changed decision agree with the ADRs and `GLOSSARY.md` already in the repo?
 - **Conformance**: where does the codebase diverge from the decision as now written?
 
-Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
+Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings. Start every sub-agent with a fresh context window.
 
 The review fixes what it finds. See [Fixing](#fixing).
 
